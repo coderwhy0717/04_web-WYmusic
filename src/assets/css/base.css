@@ -1,0 +1,207 @@
+@import "~antd/dist/antd.css";
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: '幼圆';
+}
+h2{
+  margin: 0;
+}
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+}
+/* 样式的重置 */
+body, html, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, header, menu, section, p, input, td, th, ins {
+  padding: 0;
+  margin: 0;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+}
+
+a:hover {
+  color: #666;
+  text-decoration: underline;
+}
+
+i, em {
+  font-style: normal;
+}
+
+input, textarea, button, select, a {
+  outline: none;
+  border: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+img {
+  border: none;
+  vertical-align: middle;
+}
+
+/* // 12356
+// .vip-001 {
+//   background-image: url(http://p5.music.126.net/obj/wovDmcKXw6PCn2_CmsOk/4189721408/7a2f/2750/5084/9122db92c1927ed189539ab5b116cb49.png);
+// }
+// .vip-1 {
+//   background-image: url(https://p6.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872221/9d6a/d637/06f3/b5b315ab3c14de2043abd28a2b2af5af.png);
+// }
+// .vip-2 {
+//   background-image: url(url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872290/55e5/e93b/f4a8/600868af71326408c1f905867f142520.png));
+// }
+// .vip-3 {
+//   background-image: url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872333/eb74/6e09/3b0f/fd6e216….png);
+// }
+// .vip-4 {
+//   background-image: url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872387/95c0/0077/be84/015a47320318cb4199b67a3cbc063a09.png);
+// }
+// .vip-5 {
+//   background-image: url(url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872479/15d6/b1b3/dff8/209585a9a787b00717324e75e55851d7.png));
+// }
+// .vip-6 {
+//   background-image: url(url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872499/0cd3/2985/4070/5951d11609c60e3aa96ebddeb6bb8284.png));
+// }
+// .vip-7 {
+//   background-image: url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872333/eb74/6e09/3b0f/fd6e216….png);
+// }
+// .vip-8 {
+//   background-image: url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872333/eb74/6e09/3b0f/fd6e216….png);
+// }
+// .vip-9 {
+//   background-image: url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872333/eb74/6e09/3b0f/fd6e216….png);
+// } */
+.wrap-v1 {
+  width: 1050px;
+  margin: 0 auto;
+}
+.wrap-v2 {
+  width: 982px;
+  margin: 0 auto;
+}
+
+
+/* 多行文本溢出显示省略号(...) */
+
+.text-nowrap {
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+  overflow: hidden !important;
+}
+.texts-nowrap {
+  overflow : hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* 精灵图 */
+.sprite_01 {
+  background: url(../img/sprite_01.png) no-repeat 0 9999px;
+}
+.sprite_02 {
+  background: url(../img/sprite_02.png) no-repeat 0 9999px;
+}
+.sprite_covor {
+  background: url(../img/sprite_cover.png) no-repeat 0 9999px;
+}
+
+.sprite_icon {
+  background: url(../img/sprite_icon.png) no-repeat 0 9999px;
+}
+.sprite_icon_v2 {
+  background: url(../img/sprite_icon2.png) no-repeat 0 9999px;
+}
+.sprite_icon2 {
+  background: url(../img/sprite_icon2.png) no-repeat 0 9999px;
+}
+.sprite_titleicon2 { 
+  background: url(../img/sprite_titleicon2.png) no-repeat 0 9999px;
+}
+.download_01 {
+  background: url(../img/download.png) no-repeat 0 9999px;
+}
+.sprite_btn {
+  background: url(../img/sprite_button.png) no-repeat 0 9999px;
+}
+.sprite_btn2 {
+  background: url(../img/sprite_button2.png) no-repeat 0 9999px;
+}
+.sprite_player {
+  background: url(../img/playbar_sprite.png)no-repeat 0 9999px;
+}
+.sprite_download {
+  background: url(../img/sprite-download.png)no-repeat 0 9999px;
+}
+.sprite_table {
+  background:  url(../img/sprite_table.png) no-repeat 0 9999px;
+}
+.playlist_bg {
+  background: url(../img/playlist_bg.png) no-repeat 0 9999px;
+}
+.playlist-c {
+  background: url(../img/playlist.png) no-repeat 0 9999px;
+}
+.image_cover {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  text-indent: -9999px;
+  background: url(../img/sprite_cover.png) no-repeat -145px -57px;
+}
+.lyrics-message {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 50px;
+}
+.lyrics-message .ant-message-notice-content {
+  background: rgb(0, 0, 0,.5);
+  color: #fff;
+  
+}
+.lyrics-message .ant-message-notice-content:hover {
+  color: red;
+  cursor: pointer;
+  width: 500px;
+}
+/* 歌曲列表 */
+.ant-table-row .ant-table-cell{
+  height: 20px !important;
+}
+/* 一键返回顶部top */
+.ant-back-top {
+  right: 220px;
+  bottom: 160px;
+}
+/* 局部 滚动条样式设置  那个页面滚动给那个页面加 &::... ！
+height: 100vh;
+overflow-y: auto;
+&::-webkit-scrollbar {
+  display: none;
+} */
+/* 局部滚动条样式设置 */
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #000;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(165, 165, 165, 0.5);
+  border-radius: 10px;
+}
