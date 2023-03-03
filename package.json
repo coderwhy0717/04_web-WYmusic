@@ -4,11 +4,13 @@
   "private": true,
   "dependencies": {
     "@craco/craco": "^6.4.3",
+    "@reduxjs/toolkit": "^1.9.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "antd": "^4.20.2",
     "axios": "^0.27.2",
+    "classnames": "^2.3.2",
     "craco-less": "^2.0.0",
     "immutable": "^4.0.0",
     "lib-flexible": "^0.3.2",
@@ -22,6 +24,7 @@
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.5",
+    "underscore": "^1.13.6",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

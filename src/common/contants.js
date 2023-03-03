@@ -8,16 +8,15 @@ export const SETTLE_SINGER = 5
 // 链接api
 export const realIp = '116.25.146.177'
 
-
-// 新碟上新轮播图播放的速度
+// 新碟上新 轮播图 播放的速度
 export const SETTINGS = {
-    slidesToScroll: 1,
-    speed: 1000,
-    autoplaySpeed: 1000,
-    cssEase: "linear"
- }
+  slidesToScroll: 1,
+  speed: 1000,
+  autoplaySpeed: 1000,
+  cssEase: 'linear'
+}
 
-//  
+//
 // {
 //     item.artists.map((iten,inden) => {
 //       return (

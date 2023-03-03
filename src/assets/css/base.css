@@ -129,7 +129,8 @@ img {
 .sprite_icon2 {
   background: url(../img/sprite_icon2.png) no-repeat 0 9999px;
 }
-.sprite_titleicon2 { 
+
+.sprite_titleicon2 {
   background: url(../img/sprite_titleicon2.png) no-repeat 0 9999px;
 }
 .download_01 {
@@ -174,7 +175,7 @@ img {
 .lyrics-message .ant-message-notice-content {
   background: rgb(0, 0, 0,.5);
   color: #fff;
-  
+
 }
 .lyrics-message .ant-message-notice-content:hover {
   color: red;

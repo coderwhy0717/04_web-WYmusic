@@ -1,41 +1,38 @@
 import styled from 'styled-components'
 
-
 export const HeaderWrapper = styled.div`
-   
-    width: 100%;
+  width: 100%;
+  height: 70px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #242424;
+
+  .content {
     height: 70px;
-    font-size: 14px;
-    color: #fff;
+    display: flex;
+    justify-content: space-between;
     background-color: #242424;
-  
-    .content {
-        height: 70px;
-        display: flex;
-        justify-content: space-between;
-    background-color: #242424;
-
-    }
-
-    .divider {
-      height: 5px;
-      background-color: #C20C0C;
+  }
+  /*  */
+  .divider {
+    height: 5px;
+    background-color: #c20c0c;
   }
 `
 
 export const HeaderLeft = styled.div`
-    display: flex;
-    .logo {
-        display: block;
-        width: 176px;
-        height: 69px;
-        background-position: 0 0;
-        text-indent: -9999px;
-    }
-    .select-list {
+  display: flex;
+  .logo {
+    display: block;
+    width: 176px;
+    height: 69px;
+    background-position: 0 0;
+    text-indent: -9999px;
+  }
+  .select-list {
     display: flex;
     line-height: 70px;
-    
+
     .select-item {
       position: relative;
       a {
@@ -48,22 +45,23 @@ export const HeaderLeft = styled.div`
         position: relative;
         ::after {
           position: absolute;
-          content: "";
+          content: '';
           width: 28px;
           height: 19px;
-          background-image: url(${require("@/assets/img/sprite_01.png")});
+          background-image: url(${require('@/assets/img/sprite_01.png')});
           background-position: -190px 0;
           top: 20px;
           right: -15px;
         }
       }
 
-      &:hover a, a.active {
+      &:hover a,
+      a.active {
         color: #fff;
         background: #000;
         text-decoration: none;
       }
-      
+
       .active .icon {
         position: absolute;
         display: inline-block;
@@ -78,35 +76,29 @@ export const HeaderLeft = styled.div`
   }
 `
 export const HeaderRight = styled.div`
-    display: flex;
-    align-items: center;
-    color: #ccc;
-    font-size: 12px;
-    .search {
-      width: 158px;
-      height: 32px;
-      border-radius: 16px;
-      input {
-        &::placeholder {
-          font-size: 12px;
-        }
-      }
-    }
-    .creation {
-      margin: 0 10px;
-      padding: 5px 10px;
-      border: 0.5px solid #4F4F4F;
-      border-radius: 16px;
-      font-size: 12px;
-      &:hover {
-        border: 0.5px solid #fff;
-        cursor: pointer;
-      }
-    }
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: #ccc;
+  font-size: 12px;
 
-    .login {
-      &:hover a{
-        color: #aaa;
-      }
+  .creation {
+    margin: 0 10px;
+    padding: 5px 10px;
+    border: 0.5px solid #4f4f4f;
+    border-radius: 16px;
+    font-size: 12px;
+    transition: all 800ms ease;
+    &:hover {
+      /* border: 0.5px solid #fff; */
+      box-shadow: 0 0 2px 1px #fff;
+      cursor: pointer;
     }
+  }
+
+  .login {
+    &:hover a {
+      color: #aaa;
+    }
+  }
 `
