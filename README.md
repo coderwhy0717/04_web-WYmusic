@@ -1,7 +1,8 @@
 # Getting Started with Create React App
 
-使用react 
+# web 网易云
 
+使用 react 不是第三方的 redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
