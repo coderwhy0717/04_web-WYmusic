@@ -1,9 +1,11 @@
-@import "~antd/dist/antd.css";
+/* @import "~antd/dist/antd.css"; */
 
 body {
   padding: 0;
   margin: 0;
-  font-family: '幼圆';
+  /* font-family: '幼圆'; */
+  font-family: Arial, Helvetica, sans-serif;
+
 }
 h2{
   margin: 0;
@@ -129,9 +131,15 @@ img {
 .sprite_icon2 {
   background: url(../img/sprite_icon2.png) no-repeat 0 9999px;
 }
+.logo_icon {
+  background: url(../img/logo.png) no-repeat 0 9999px;
+}
 
 .sprite_titleicon2 {
   background: url(../img/sprite_titleicon2.png) no-repeat 0 9999px;
+}
+.mask {
+  background: url(../img/mask.png) no-repeat 0 9999px;
 }
 .download_01 {
   background: url(../img/download.png) no-repeat 0 9999px;
@@ -171,6 +179,11 @@ img {
   left: 0;
   right: 0;
   bottom: 50px;
+  z-index: 99999;
+}
+/* antd 版本 5X */
+.ant-message  {
+  transform: none !important;
 }
 .lyrics-message .ant-message-notice-content {
   background: rgb(0, 0, 0,.5);

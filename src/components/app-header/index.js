@@ -57,7 +57,7 @@ export default memo(function WYAppHeader() {
 
           <div className="creation">创作者中心</div>
           <div className="login">
-            <a href="#/">登录</a>
+            <NavLink to={'/login'}>登录</NavLink>
           </div>
         </HeaderRight>
       </div>

@@ -1,3 +1,5 @@
+import { province, city, county } from 'china-region-data'
+
 // ?imageView&blur=40x20 照片模糊拼接
 export function getSizeImage(imgUrl, size, type = 'x') {
   return `${imgUrl}?param=${size}${type}${size}`
@@ -52,8 +54,62 @@ function padLeftZero(str) {
 export function formatMonthDay(time) {
   return formatDate(time, 'MM月dd日')
 }
-export function formatYearMonthDay(time) {
-  return formatDate(time, 'yyyy-MM-dd')
+// 根据年限 获取几几后
+export function formatYearLater(time) {
+  if (time === undefined) return
+  if (time < 0) return
+  const year = formatDate(time, 'yy') * 1
+  if (year < 10) {
+    return '00'
+  } else if (year < 20) {
+    return '10'
+  } else if (year < 30) {
+    return '20'
+  } else if (year < 40) {
+    return '30'
+  } else if (year < 50) {
+    return '40'
+  } else if (year < 60) {
+    return '50'
+  } else if (year < 70) {
+    return '60'
+  } else if (year < 80) {
+    return '70'
+  } else if (year < 85) {
+    return '80'
+  } else if (year < 90) {
+    return '85'
+  } else if (year < 95) {
+    return '90'
+  } else {
+    return '95'
+  }
+}
+
+// 获取城市地区
+export function getCity(id) {
+  if (id === undefined) return
+  let provinceId = id.toString().slice(0, 2).padEnd(12, 0)
+  let cityId = id.toString().padEnd(12, 0)
+  // 省 '130000000000'
+  // console.log(province.filter((el) => el.id === provinceId)[0])
+  // 根据省'130000000000'  获取城市'130400000000'
+  // console.log(
+  //   city[provinceId].filter((el) => el.id === cityId),
+  //   '4'
+  // )
+  // 判断传进来的是乱的 获取不到 就出去
+  if (city[provinceId] === undefined)
+    return province.filter((el) => el.id === provinceId)[0]
+  return (
+    // 返回的形式是数组
+    city[provinceId].filter((el) => el.id === cityId)[0] ||
+    province.filter((el) => el.id === provinceId)[0]
+  )
+  // return province.filter((el) => el.id === id)[0]
+}
+export function formatYearMonthDay(time, style = '-') {
+  return formatDate(time, `yyyy${style}MM${style}dd`)
 }
 export function formatMinuteSecond(time) {
   return formatDate(time, 'mm:ss')
@@ -99,5 +155,7 @@ export function getAlbumText(description) {
 
 // object 转化 判断是否有数据
 export function objectChange(obj) {
+  // console.log(!!Object.keys({ a: 'key', b: 'a' } ?? {}).length, 'nihao')
+
   return !!Object.keys(obj ?? {}).length
 }

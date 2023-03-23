@@ -13,6 +13,8 @@ import store from './store'
 import WYAppHeader from 'components/app-header'
 import WYAppFooter from 'components/app-footer'
 import WYAppPlayerBar from '@/pages/player/app-player-bar'
+import ErrorCover from './pages/error-cover'
+
 // import newstore from './newstore'
 export default memo(function App() {
   return (
@@ -20,9 +22,12 @@ export default memo(function App() {
     <Provider store={store}>
       <HashRouter>
         <WYAppHeader />
+
         <Suspense fallback={<div>page loading</div>}>
           {renderRoutes(routes)}
         </Suspense>
+
+        <ErrorCover />
         <WYAppFooter />
         <BackTop />
         <WYAppPlayerBar />

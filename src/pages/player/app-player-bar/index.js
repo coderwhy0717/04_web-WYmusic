@@ -24,6 +24,7 @@ import {
   PlayerBarLeft,
   PlayerBarRight
 } from './style'
+// import { objectChange } from '../../../utils/format-utils'
 export default memo(function WYAppPlayerBar() {
   const audioRef = useRef()
   const [currentTime, setCurrentTime] = useState(0)
@@ -57,7 +58,8 @@ export default memo(function WYAppPlayerBar() {
     // dispatch(getPlaySongDetailAction(1813864802))
     // dispatch(getPlaySongDetailAction(33162226))
     // dispatch(getPlaySongDetailAction(1484537845))
-    dispatch(getPlaySongDetailAction(1933602285))
+    // 首次播放
+    dispatch(getPlaySongDetailAction(2031679013))
   }, [dispatch])
   useEffect(() => {
     // 音乐是否可用
@@ -129,7 +131,11 @@ export default memo(function WYAppPlayerBar() {
     }
     // 获取到最前面的歌词显示
     if (index === 0) {
+      console.log('歌词')
+
       const lr = playLyrics[0] && playLyrics[0].content
+      console.log(lr, '歌词')
+
       message.open({
         key: 'lyrics',
         duration: 0,
@@ -236,10 +242,12 @@ export default memo(function WYAppPlayerBar() {
         <PlayerBarCenter>
           <div className="image">
             <img src={getSizeImage(picUrl, 35)} alt=""></img>
-            <NavLink
-              to={`/discover/playSong/${currentSong.id}`}
-              className="image-a sprite_player"
-            ></NavLink>
+            {currentSong.id && (
+              <NavLink
+                to={`/discover/playSong/${currentSong.id}`}
+                className="image-a sprite_player"
+              ></NavLink>
+            )}
           </div>
           <div className="content">
             <div className="content-top">
@@ -268,9 +276,14 @@ export default memo(function WYAppPlayerBar() {
                       })
                     : '未知歌手'}
                 </span>
-                <a href="/#" className="link sprite_player" title="来自歌单">
-                  {' '}
-                </a>
+
+                {currentSong.ar && (
+                  <NavLink
+                    to={`/discover/artist/${currentSong?.ar[0]?.id}`}
+                    className="link sprite_player"
+                    title="来自歌手"
+                  ></NavLink>
+                )}
               </div>
             </div>
             <div className="content-footer">

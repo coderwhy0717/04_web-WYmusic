@@ -7,7 +7,11 @@ import { Input } from 'antd'
 import { SearchOutlined } from '@ant-design/icons'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { debounce } from 'underscore'
-import { getSeatchMessage } from '../../pages/search-view/store/actionCreators'
+import {
+  changeCurrentType,
+  getSeatchMessage,
+  changeCurrentName
+} from '../../pages/search-view/store/actionCreators'
 import { useHistory, useParams } from 'react-router-dom'
 
 const SearchCpn = memo((props) => {
@@ -22,7 +26,7 @@ const SearchCpn = memo((props) => {
   const [bgcShow, setBgcShow] = useState(false)
   const { serachMessage } = useSelector(
     (state) => ({
-      serachMessage: state.getIn(['serach', 'serachMessage'])
+      serachMessage: state.getIn(['search', 'serachMessage'])
     }),
     shallowEqual
   )
@@ -72,6 +76,7 @@ const SearchCpn = memo((props) => {
       vars = false
     }
     console.log(serachMessage)
+    console.log(objectChange(serachMessage))
 
     // 网络请求新数据
     dispatch(getSeatchMessage(e.target.value))
@@ -138,7 +143,14 @@ const SearchCpn = memo((props) => {
       document.removeEventListener('scroll', fn)
     }
   }, [bgcShow])
-
+  // 点击相关搜索标题
+  const changeClickT = () => {
+    // 修改 rodux 信息 跳转到搜索页面 的用户页面
+    dispatch(changeCurrentType(1002))
+    dispatch(changeCurrentName('userprofiles'))
+    history.push(`/search/view/${searchValue}`)
+    setBgcShow(false)
+  }
   return (
     <SearchWrapper showbgc={bgcShow} lengthInput={lengthInput}>
       {/* input */}
@@ -166,18 +178,17 @@ const SearchCpn = memo((props) => {
           onClick={(e) => focus(searchValue)}
         />
       )}
-
-      {objectChange(serachMessage) ? (
+      {objectChange(serachMessage) && (
         <div className="box-search">
           <div className="top">
-            <a href="/#" className="a-link">
+            <div className="a-link" onClick={changeClickT}>
               搜"<span className="top-text text-nowrap">{searchValue}</span>
               "相关用户
-            </a>
+            </div>
             &nbsp;&gt;
           </div>
           <div className="center">
-            {serachMessage.order.map((item) => {
+            {serachMessage?.order.map((item) => {
               return (
                 <div className="info1" key={item}>
                   <div className="left-1 ">
@@ -207,8 +218,6 @@ const SearchCpn = memo((props) => {
             })}
           </div>
         </div>
-      ) : (
-        ''
       )}
       <div className="search-bg" onClick={changeShowbgc}></div>
     </SearchWrapper>

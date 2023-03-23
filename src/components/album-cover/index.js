@@ -4,13 +4,19 @@ import { NavLink } from 'react-router-dom'
 import WYUserNameSort from 'components/user-name-sort'
 
 import { AlbumWrapper } from './style'
-import { getSizeImage } from '../../utils/format-utils'
+import { formatYearMonthDay, getSizeImage } from '../../utils/format-utils'
 export default memo(function WYAlbumCover(props) {
-  const { info = {}, size = 130, width = 153, bgp = '-845px' } = props
+  const {
+    info = {},
+    size = 130,
+    width = 153,
+    bgp = '-845px',
+    showName = true
+  } = props
   // console.log(info)
   return (
     <AlbumWrapper size={size} bgp={bgp} width={width}>
-      <div className="album-image">
+      <div className="album-image" title={info.name}>
         <img src={getSizeImage(info.picUrl, size)} alt=""></img>
         <NavLink
           className="cover image_cover"
@@ -25,7 +31,13 @@ export default memo(function WYAlbumCover(props) {
         >
           {info.name}
         </NavLink>
-        <WYUserNameSort artists={info.artists} />
+
+        {showName && <WYUserNameSort artists={info.artists} />}
+        {!showName && (
+          <div className="publishTime">
+            {formatYearMonthDay(info.publishTime, '.')}
+          </div>
+        )}
       </div>
     </AlbumWrapper>
   )

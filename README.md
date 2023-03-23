@@ -1,6 +1,10 @@
 # Getting Started with Create React App
 
+4.20.2
+
 # web 网易云
+
+<!-- to={`/discover/playSong/${item.id}`} -->
 
 使用 react 不是第三方的 redux
 

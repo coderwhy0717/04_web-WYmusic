@@ -9,11 +9,13 @@ const Album = React.lazy(() => import('../pages/discover/c-pages/album'))
 const Djradio = React.lazy(() => import('../pages/discover/c-pages/djradio'))
 const Ranking = React.lazy(() => import('../pages/discover/c-pages/ranking'))
 const Songs = React.lazy(() => import('../pages/discover/c-pages/songs'))
-const Artist = React.lazy(() => import('../pages/discover/c-pages/artist'))
+const Singer = React.lazy(() => import('../pages/discover/c-pages/singer'))
+const Artist = React.lazy(() => import('../pages/discover/other-pages/artist'))
 
 const WYPageMine = React.lazy(() => import('@/pages/mine'))
 
 const WYPageFriend = React.lazy(() => import('@/pages/friend'))
+const Mv = React.lazy(() => import('../pages/discover/other-pages/mv'))
 
 const routes = [
   {
@@ -56,6 +58,12 @@ const routes = [
         path: '/discover/Djradio',
         component: Djradio
       },
+      // 歌手
+      {
+        path: '/discover/singer',
+        component: Singer
+      },
+      // 艺人
       {
         path: '/discover/artist/:id',
         component: Artist
@@ -63,6 +71,10 @@ const routes = [
       {
         path: '/discover/Album',
         component: Album
+      },
+      {
+        path: '/discover/mv/:id',
+        component: Mv
       },
       {
         path: '/discover/songListDetail/:id',
@@ -82,6 +94,12 @@ const routes = [
         component: React.lazy(() =>
           import('@/pages/discover/other-pages/album-details')
         )
+      },
+      {
+        path: '/discover/mv/:id',
+        component: React.lazy(() =>
+          import('@/pages/discover/other-pages/mv-detail')
+        )
       }
     ]
   },
@@ -97,11 +115,24 @@ const routes = [
     path: '/search/view/:name',
     component: React.lazy(() => import('@/pages/search-view'))
   },
+  // login 登录 页面
+  {
+    path: '/login',
+    component: React.lazy(() => import('@/pages/login'))
+  },
+  // 用户页面 信息
   {
     path: '/user/home/:id',
-    component: React.lazy(() =>
-      import('@/pages/discover/other-pages/artist-details')
-    )
+    component: React.lazy(() => import('@/pages/user-home'))
+  },
+  // user/home 用户听得一周/所有时间 里的所有歌曲
+  {
+    path: '/user/songs/rank/:id',
+    component: React.lazy(() => import('@/pages/user-home/user-song-rank-page'))
+  },
+  {
+    path: '/err404',
+    component: React.lazy(() => import('@/pages/error-cover'))
   },
   {
     path: '/ERR_NETWORK',

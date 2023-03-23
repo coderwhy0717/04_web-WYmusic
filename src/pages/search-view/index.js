@@ -1,12 +1,16 @@
 import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
+// import PropTypes from 'prop-types'
+import React, { memo, useEffect } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import SearchCpn from '../../components/search-cpn'
 import SearchForm from '../../components/search-form'
+import { objectChange } from '../../utils/format-utils'
 import SearchAlbum from './cpn/search-album'
 import SearchArtist from './cpn/search-artist'
+import SearchMv from './cpn/search-mv'
+import SearchSongList from './cpn/search-song-list'
 import SearchSongs from './cpn/search-songs'
+import SearchUser from './cpn/search-user'
 import {
   changeCurrentType,
   changeCurrentName,
@@ -126,11 +130,12 @@ const SearchView = memo((props) => {
               )
             })}
           </div>
-          {/* 歌曲 */}
+          {/* 歌曲 具名插槽 */}
           {currentType === 1 && (
-            <SearchForm data={searchPageMessage[currentName]}>
-              {/* <SearchSongs /> */}
-            </SearchForm>
+            <SearchForm
+              data={searchPageMessage[currentName]}
+              Cpn={SearchSongs}
+            ></SearchForm>
           )}
           {/* 歌手 */}
           {currentType === 100 && (
@@ -141,17 +146,30 @@ const SearchView = memo((props) => {
             <SearchAlbum data={searchPageMessage[currentName]} />
           )}
           {/* 视频 */}
-          {currentType === 1014 && <SearchForm></SearchForm>}
+          {currentType === 1014 && (
+            <SearchMv data={searchPageMessage[currentName]} />
+          )}
           {/* 歌词 */}
           {currentType === 1006 && <SearchForm type={currentType}></SearchForm>}
           {/* 歌单 */}
-          {currentType === 1000 && <SearchForm type={currentType}></SearchForm>}
+          {currentType === 1000 && (
+            <SearchForm
+              data={searchPageMessage[currentName]}
+              Cpn={SearchSongList}
+            />
+          )}
           {/* 声音主播 */}
           {currentType === 2000 && <SearchForm></SearchForm>}
           {/* 用户 */}
-          {currentType === 1002 && <SearchForm type={currentType}></SearchForm>}
-
-          <div className="songs-message"></div>
+          {currentType === 1002 && (
+            <SearchForm
+              data={searchPageMessage[currentName]}
+              Cpn={SearchUser}
+            />
+          )}
+          {!objectChange(searchPageMessage[currentName]) && (
+            <div className="songs-message"></div>
+          )}
         </div>
       </div>
     </SearchViewWrapper>

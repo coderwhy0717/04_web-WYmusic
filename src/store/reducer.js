@@ -4,12 +4,14 @@ import { reducer as playerReduxcer } from '../pages/player/store'
 import { reducer as otherPagesReduxcer } from '../pages/discover/other-pages/store'
 import { reducer as rankingReducer } from '../pages/discover/c-pages/ranking/store'
 import { reducer as SearchReducer } from '../pages/search-view/store'
+import { reducer as userHomes } from '../pages/user-home/store'
 // 模块结合
 const cReducer = combineReducers({
   recommend: recommendReducer,
   player: playerReduxcer,
   otherPages: otherPagesReduxcer,
   ranking: rankingReducer,
-  search: SearchReducer
+  search: SearchReducer,
+  userHome: userHomes
 })
 export default cReducer

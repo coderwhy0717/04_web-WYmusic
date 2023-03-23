@@ -2,6 +2,8 @@ import styled from 'styled-components'
 
 export const SearchViewWrapper = styled.div`
   background-color: #f5f5f5;
+  font-family: Arial, Helvetica, sans-serif;
+
   .box {
     border-left: 1px solid #ddd;
     border-right: 1px solid #ddd;

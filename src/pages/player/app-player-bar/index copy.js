@@ -142,6 +142,7 @@ export default memo(function WYAppPlayerBar() {
             <img src={getSizeImage(picUrl, 35)} alt=""></img>
             <a href="/#" className="image-a sprite_player">
               {' '}
+              a
             </a>
           </div>
           <div className="content">

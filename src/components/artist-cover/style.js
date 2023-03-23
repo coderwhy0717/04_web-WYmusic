@@ -5,7 +5,8 @@ export const ArtistCoverWrapper = styled.div`
   .box-img {
     position: relative;
     display: inline-block;
-
+    width: 130px;
+    height: 130px;
     img {
       object-fit: cover;
     }

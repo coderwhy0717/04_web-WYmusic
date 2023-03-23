@@ -41,4 +41,8 @@ export const AlbumWrapper = styled.div`
       color: #000;
     }
   }
+  .publishTime {
+    font-size: 12px;
+    color: #666;
+  }
 `

@@ -1,33 +1,17 @@
 import PropTypes from 'prop-types'
 import React, { memo } from 'react'
-import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { formatMinuteSecond } from '@/utils/format-utils'
 import { FormDetailWrapper } from './style'
-import { getPlaySongDetailAction } from '@/pages/player/store/actionCreators'
-import classNames from 'classnames'
-
+import PlayIcon from '@/components/play-icon'
+// 歌曲
 const SearchSongs = memo((props) => {
   const { item = {} } = props
-  const { currentSong } = useSelector(
-    (state) => ({
-      currentSong: state.getIn(['player', 'currentSong'])
-    }),
-    shallowEqual
-  )
-  const dispatch = useDispatch()
-  const changePlayMusic = () => {
-    dispatch(getPlaySongDetailAction(item.id))
-  }
+
   return (
     <FormDetailWrapper>
-      <div
-        className={classNames('icon sprite_table', {
-          activeIcon: item.id === currentSong.id
-        })}
-        title="播放"
-        onClick={changePlayMusic}
-      />
+      {/* icon 播放组件 */}
+      <PlayIcon id={item.id} />
       <div className="name">
         <NavLink
           to={`/discover/playSong/${item.id}`}
@@ -36,9 +20,16 @@ const SearchSongs = memo((props) => {
         >
           {item.name}
         </NavLink>
-        {item.mvid ? <button className="mv sprite_table"></button> : ''}
+        {item.mvid ? (
+          <NavLink
+            to={`/discover/mv/${item.id}`}
+            className="mv sprite_table"
+            title="MV"
+          ></NavLink>
+        ) : (
+          ''
+        )}
       </div>
-
       {/*  <a href={} className="name" title={item.name}>*/}
       <div className="artist text-nowrap">
         {item?.artists.map((artist) => {

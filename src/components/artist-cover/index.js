@@ -6,10 +6,20 @@ import { ArtistCoverWrapper } from './style'
 
 const ArtistCover = memo((props) => {
   const { item = {} } = props
+  console.log(item)
+
   return (
     <ArtistCoverWrapper>
       <div className="box-img">
-        <img src={getSizeImage(item.img1v1Url, 130)} alt="" />
+        {item.img1v1 !== -1 ? (
+          <img src={getSizeImage(item.img1v1Url, 130)} alt="" />
+        ) : (
+          <img
+            src="http://p3.music.126.net/VnZiScyynLG7atLIZ2YPkw==/18686200114669622.jpg?param=130y130"
+            alt=""
+          />
+        )}
+
         <NavLink to={`/discover/artist/${item.id}`}>
           <div className="cover sprite_covor"></div>
         </NavLink>
@@ -21,10 +31,12 @@ const ArtistCover = memo((props) => {
         >
           {item.name}
         </NavLink>
-        <NavLink
-          to={`/user/home/${item.id}`}
-          className="bgcicon sprite_icon2"
-        ></NavLink>
+        {item?.accountId && (
+          <NavLink
+            to={`/user/home/${item.accountId}`}
+            className="bgcicon sprite_icon2"
+          ></NavLink>
+        )}
       </div>
     </ArtistCoverWrapper>
   )

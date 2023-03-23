@@ -148,6 +148,7 @@ export function getLyricsAction(id, isShow = true) {
         dispatch(changeShowErrorAction('ERR_NETWORK'))
         return
       }
+      console.log(res, 'geci')
 
       // if(!res.lrc) return
       const ly = res.lrc && res.lrc.lyric

@@ -149,6 +149,12 @@ export const PlayerBarCenter = styled.div`
           margin-top: -7px;
           background: url(${require('@/assets/img/sprite_icon.png')}) 0 -250px;
         }
+        .ant-slider-handle::before {
+          display: none;
+        }
+        .ant-slider-handle::after {
+          display: none;
+        }
       }
       .time {
         margin-left: 5px;

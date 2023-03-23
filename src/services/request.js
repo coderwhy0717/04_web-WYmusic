@@ -8,14 +8,15 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   (config) => {
-    console.log('全局请求成功')
-    console.log(config.params, '总播放')
+    // console.log('全局请求成功')
+    // console.log(config.params, '总播放')
     // if(config.url === '/banner') return config
     // if(config.url === '/toplist') return config
     // if(config.url === '/song/detail') return config
     // 请求如果config.url有params就添加cookie
-    // if(config.params) {
-    //   config.params.cookie = 'MUSIC_A=8aae43f148f990410b9a2af38324af24e87ab9227c9265627ddd10145db744295fcd8701dc45b1ab8985e142f491516295dd965bae848761274a577a62b0fdc54a50284d1e434dcc04ca6d1a52333c9a'
+    // if (config.params) {
+    //   config.params.cookie =
+    //     'MUSIC_A=8aae43f148f990410b9a2af38324af24e87ab9227c9265627ddd10145db744295fcd8701dc45b1ab8985e142f491516295dd965bae848761274a577a62b0fdc54a50284d1e434dcc04ca6d1a52333c9a'
     // }
     return config
   },
@@ -27,7 +28,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (res) => {
-    console.log('全局响应成功', res)
+    // console.log('全局响应成功', res)
     return res.data
   },
   (err) => {
@@ -39,6 +40,9 @@ instance.interceptors.response.use(
           break
         case 401:
           console.log('未授权访问')
+          break
+        case 404:
+          console.log('404')
           break
         default:
           console.log('其他错误信息')
