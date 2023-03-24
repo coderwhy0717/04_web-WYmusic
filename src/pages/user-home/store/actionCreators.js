@@ -41,6 +41,11 @@ export const changeQRCodeAction = (QRCode) => ({
   type: actionType.USER_QRCODE,
   QRCode
 })
+// 登录 是否显示 登录 窗口 action
+export const changeLoginShowAction = (data) => ({
+  type: actionType.LOGIN_SHOW_WINDOW,
+  data
+})
 
 // user/home 用户的信息
 export function getUserInfoAction(id) {

@@ -8,3 +8,4 @@ export const USER_COLLECT_SONG_LIST = 'user-home/USER_COLLECT_SONG_LIST'
 
 export const USER_LOGIN_IMAGE = 'user-home/USER_LOGIN_IMAGE'
 export const USER_QRCODE = 'user-home/USER_QRCODE'
+export const LOGIN_SHOW_WINDOW = 'user-home/LOGIN_SHOW_WINDOW'

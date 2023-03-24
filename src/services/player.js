@@ -1,4 +1,15 @@
 import request from './request'
+
+// 获取 音乐的url链接
+export function getSongUrl(id) {
+  return request({
+    url: '/song/url',
+    params: {
+      id
+    }
+  })
+}
+
 export function getPlaySongDetail(ids) {
   return request({
     url: '/song/detail',

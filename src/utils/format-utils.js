@@ -1,4 +1,5 @@
 import { province, city, county } from 'china-region-data'
+import { getSongUrl } from '../services/player'
 
 // ?imageView&blur=40x20 照片模糊拼接
 export function getSizeImage(imgUrl, size, type = 'x') {
@@ -116,8 +117,12 @@ export function formatMinuteSecond(time) {
 }
 //以上-- 对歌曲的时间格式化
 
-export function getPlayUrl(id) {
-  return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
+export async function getPlayUrl(id) {
+  const res = await getSongUrl(id)
+  console.log(res, 'gegeggg')
+  console.log(res.data[0].url)
+  return res.data[0].url
+  // return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }
 
 export function getdescription(srting) {

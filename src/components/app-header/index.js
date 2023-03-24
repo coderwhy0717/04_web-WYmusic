@@ -5,6 +5,9 @@ import { headerLinks } from '@/common/local.data'
 import { NavLink } from 'react-router-dom'
 import { HeaderWrapper, HeaderLeft, HeaderRight } from './style'
 import SearchCpn from '../search-cpn'
+import { useDispatch, useSelector } from 'react-redux'
+import { changeLoginShowAction } from '../../pages/user-home/store/actionCreators'
+import LoginCover from '../../pages/login/cpn/login-cover'
 
 // import axios from 'axios'
 
@@ -33,7 +36,13 @@ export default memo(function WYAppHeader() {
       return <a href={item.link}>{item.title}</a>
     }
   }
-
+  const { LoginShowWindow } = useSelector((state) => ({
+    LoginShowWindow: state.getIn(['userHome', 'LoginShowWindow'])
+  }))
+  const dispatch = useDispatch()
+  const changeLoginShow = () => {
+    dispatch(changeLoginShowAction(true))
+  }
   return (
     <HeaderWrapper>
       <div className="content wrap-v1 ">
@@ -55,14 +64,22 @@ export default memo(function WYAppHeader() {
           {/* 封装的搜索 组件 */}
           <SearchCpn />
 
-          <div className="creation">创作者中心</div>
+          <div className="creation">
+            <NavLink to={'/login'}>创作者中心</NavLink>
+          </div>
           <div className="login">
-            <NavLink to={'/login'}>登录</NavLink>
+            {/* <NavLink to={'/login'}>登录</NavLink> */}
+            <p onClick={changeLoginShow}>登录</p>
           </div>
         </HeaderRight>
       </div>
       {/* 推荐 排行榜 歌单 主播电台 .... 的红色背景 */}
       <div className="divider"></div>
+      {LoginShowWindow && (
+        <div className="loginCover">
+          <LoginCover />
+        </div>
+      )}
     </HeaderWrapper>
   )
 })

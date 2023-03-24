@@ -131,10 +131,10 @@ export default memo(function WYAppPlayerBar() {
     }
     // 获取到最前面的歌词显示
     if (index === 0) {
-      console.log('歌词')
+      // console.log('歌词')
 
       const lr = playLyrics[0] && playLyrics[0].content
-      console.log(lr, '歌词')
+      // console.log(lr, '歌词')
 
       message.open({
         key: 'lyrics',
