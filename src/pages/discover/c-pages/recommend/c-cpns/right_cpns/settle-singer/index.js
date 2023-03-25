@@ -17,7 +17,7 @@ export default memo(function WYSettleSinger() {
   const history = useHistory()
   const changeClick = (id) => {
     if (id === null) {
-      console.log(id, 'userHome id是空的,这个傻逼没有用户主页!!!')
+      alert(`这个傻逼没有用户主页!!! \nuserHome id是空的 id: ${id} `)
       return
     }
     history.push(`/user/home/${id}`)

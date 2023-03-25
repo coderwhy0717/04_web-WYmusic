@@ -61,7 +61,7 @@ const SearchCpn = memo((props) => {
   // 变量
   let vars = true
   const ClickChange = debounce((e) => {
-    console.log(e.target.value, !e.target.value.length)
+    // console.log(e.target.value, !e.target.value.length)
     setSearchValue(e.target.value)
     // 输入框没有的时候 不需要请求 恢复初始化
     if (!e.target.value.length) {
@@ -75,8 +75,8 @@ const SearchCpn = memo((props) => {
       setBgcShow(true)
       vars = false
     }
-    console.log(serachMessage)
-    console.log(objectChange(serachMessage))
+    // console.log(serachMessage)
+    // console.log(objectChange(serachMessage))
 
     // 网络请求新数据
     dispatch(getSeatchMessage(e.target.value))
@@ -98,7 +98,7 @@ const SearchCpn = memo((props) => {
   // 获取焦点
   const focus = (e) => {
     if (!e.length) return
-    console.log(e)
+    // console.log(e)
     setBgcShow(true)
   }
   // 点击 搜索的信息

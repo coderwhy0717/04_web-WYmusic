@@ -43,10 +43,14 @@ export default memo(function WYPlaySongDetails(props) {
     dispatch(getSimiarSongAction(id))
     // 歌曲评论
   }, [dispatch, id])
+  let pagesLyricss = pagesLyrics
+  if (pagesLyrics[0]?.time === 999999999999) {
+    pagesLyricss = pagesLyrics.slice(1)
+  }
   return (
     <SongDetailsWrapper className="wrap-v2">
       <SongLeft err={err}>
-        <WYSongInfo info={songDetail} pagesLyrics={pagesLyrics} />
+        <WYSongInfo info={songDetail} pagesLyrics={pagesLyricss} />
         <h1>写评论</h1>
         <h1>评论</h1>
       </SongLeft>

@@ -5,7 +5,7 @@ import { HashRouter } from 'react-router-dom'
 
 import { Provider } from 'react-redux'
 
-import { BackTop } from 'antd'
+import { FloatButton } from 'antd'
 
 import routes from './router'
 import store from './store'
@@ -29,7 +29,7 @@ export default memo(function App() {
 
         <ErrorCover />
         <WYAppFooter />
-        <BackTop />
+        <FloatButton.BackTop />
         <WYAppPlayerBar />
       </HashRouter>
     </Provider>

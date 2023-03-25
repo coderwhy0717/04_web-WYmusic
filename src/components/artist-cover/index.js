@@ -6,7 +6,6 @@ import { ArtistCoverWrapper } from './style'
 
 const ArtistCover = memo((props) => {
   const { item = {} } = props
-  console.log(item)
 
   return (
     <ArtistCoverWrapper>

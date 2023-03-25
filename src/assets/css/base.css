@@ -200,9 +200,10 @@ img {
   height: 20px !important;
 }
 /* 一键返回顶部top */
-.ant-back-top {
+.ant-float-btn {
   right: 220px;
   bottom: 160px;
+  border: 1px solid #ddd;
 }
 /* 局部 滚动条样式设置  那个页面滚动给那个页面加 &::... ！
 height: 100vh;

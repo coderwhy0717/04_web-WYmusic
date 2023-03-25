@@ -5,7 +5,7 @@ import { SearchFormWrapper } from './style'
 
 const SearchForm = memo((props) => {
   const { data = [], Cpn = 'div' } = props
-  console.log(Cpn, 'cpn')
+  // console.log(Cpn, 'cpn')
 
   return (
     <SearchFormWrapper>

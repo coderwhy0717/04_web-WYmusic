@@ -106,7 +106,7 @@ export function getPlaySongDetailAction(ids, LinkedHashSet = true) {
       // 播放按钮显示/隐藏
       dispatch(changePlayingAction(true))
       //获取歌词
-      console.log(song.id, '歌曲id')
+      // console.log(song.id, '歌曲id')
       dispatch(getLyricsAction(song.id))
     } else {
       //没有这首歌

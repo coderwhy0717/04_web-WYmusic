@@ -68,18 +68,24 @@ export default memo(function WYAppPlayerBar() {
       // console.log(res.response.data, '检查播放')
       const info = res.response.data
       console.log(res, info, 'datra')
-      dispatch(changePlayLyricsAction([{ time: 0, content: info.message }]))
+      dispatch(
+        changePlayLyricsAction([
+          { time: 0, content: info.message, play: false }
+        ])
+      )
     })
     // console.log(audioRef.current,"aaaaaaaaaa")
-    audioRef.current.src = getPlayUrl(currentSong.id)
-    audioRef.current
-      .play()
-      .then((res) => {
-        dispatch(changePlayingAction(true))
-      })
-      .catch((err) => {
-        dispatch(changePlayingAction(false))
-      })
+    getPlayUrl(currentSong.id).then((res) => {
+      audioRef.current.src = res
+      audioRef.current
+        .play()
+        .then((res) => {
+          dispatch(changePlayingAction(true))
+        })
+        .catch((err) => {
+          dispatch(changePlayingAction(false))
+        })
+    })
   }, [currentSong, dispatch])
   // 播放的多少歌曲
   useEffect(() => {
@@ -110,6 +116,16 @@ export default memo(function WYAppPlayerBar() {
   }, [onplaying])
   // 播放歌曲就触发
   const changeCurrentTime = (e) => {
+    // *该歌词不支持自动滚动* 求滚动歌词
+    if (playLyrics[0].key === 0) {
+      dispatch(
+        changePlayLyricsAction([
+          { time: 999999999999, content: '*该歌词不支持自动滚动* 求滚动歌词' },
+          ...playLyrics
+        ])
+      )
+      return
+    }
     const currentTime = audioRef.current.currentTime * 1000
     if (isChanging) {
       setCurrentTime(currentTime)
@@ -132,10 +148,8 @@ export default memo(function WYAppPlayerBar() {
     // 获取到最前面的歌词显示
     if (index === 0) {
       // console.log('歌词')
-
       const lr = playLyrics[0] && playLyrics[0].content
       // console.log(lr, '歌词')
-
       message.open({
         key: 'lyrics',
         duration: 0,
@@ -143,8 +157,19 @@ export default memo(function WYAppPlayerBar() {
         className: 'lyrics-message'
       })
     }
+    // 获取到最后的歌词显示
     if (index !== lyricsIndex) {
-      // 36
+      //*该歌词不支持自动滚动* 求滚动歌词
+      if (playLyrics[1] && playLyrics[1].key === 0) {
+        message.open({
+          key: 'lyrics',
+          duration: 0,
+          content: '*该歌词不支持自动滚动* 求滚动歌词',
+          className: 'lyrics-message'
+        })
+        return
+      }
+      // 歌词index lyricsIndex歌词滚动根据这个index滚动  36 滚动的歌词
       dispatch(changePlayLyrics(index))
       const lr = playLyrics[index] && playLyrics[index].content
       message.open({

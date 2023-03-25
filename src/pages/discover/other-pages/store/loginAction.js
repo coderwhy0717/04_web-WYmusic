@@ -47,12 +47,7 @@ export function getKeyAction(value) {
         const chech = await getcheck(unikey, Date.now())
         console.log(chech, 'chech')
         varia = chech.code
-        // if (value === 2 && int) {
-        //   console.log(int, 'int')
-        //   clearInterval(int)
-        //   int = null
-        //   return
-        // }
+
         if (varia === 800) {
           // 二维码已过期
           dispatch(changeQRCodeAction(chech))
@@ -66,7 +61,11 @@ export function getKeyAction(value) {
 
           go = 802
           // LocalCookie
-          // Cookie.set('_token', chech.code, 1)
+          Cookie.set(
+            '_token',
+            `MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/api/clientlog; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/neapi/feedback; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/wapi/clientlog; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/wapi/clientlog; HTTPOnly;NMTID=00O1AWiy9kv4N0Pa0qVlJ-8rfU5ah4AAAGHEnKw-Q; Max-Age=315360000; Expires=Mon, 21 Mar 2033 07:08:39 GMT; Path=/;;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/wapi/feedback; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/weapi/feedback; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/api/feedback; HTTPOnly;MUSIC_SNS=; Max-Age=0; Expires=Fri, 24 Mar 2023 07:08:39 GMT; Path=/;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/weapi/feedback; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/neapi/clientlog; HTTPOnly;__csrf=7f509ed4bf958a2be1413de2099fbf4c; Max-Age=1296010; Expires=Sat, 08 Apr 2023 07:08:49 GMT; Path=/;;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/api/clientlog; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/openapi/clientlog; HTTPOnly;MUSIC_U=e4ab5500221ccc291bfdb766d6a29a3f372116aa5804bc07968dddaa74eaa675993166e004087dd37a3df20136b2cf32871ed5833636f7906d7a98f46f5ea8ee7f07082bc904e1a1d4dbf082a8813684; Max-Age=15552000; Expires=Wed, 20 Sep 2023 07:08:39 GMT; Path=/; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/eapi/feedback; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/api/feedback; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/neapi/feedback; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/eapi/clientlog; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/eapi/feedback; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/openapi/clientlog; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/neapi/clientlog; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/weapi/clientlog; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/eapi/clientlog; HTTPOnly;MUSIC_A_T=1550253979811; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/weapi/clientlog; HTTPOnly;MUSIC_R_T=1550256904283; Max-Age=2147483647; Expires=Wed, 11 Apr 2091 10:22:46 GMT; Path=/wapi/feedback; HTTPOnly`,
+            1
+          )
           return
         }
         if (varia === 802 && go === 802) {
@@ -79,7 +78,6 @@ export function getKeyAction(value) {
           // 扫码成功
           dispatch(changeQRCodeAction(chech))
           Cookie.set('_token', chech.cookie, 1)
-
           // changeLoginShowAction 关闭登录窗口
           dispatch(changeLoginShowAction(false))
           go = 801
