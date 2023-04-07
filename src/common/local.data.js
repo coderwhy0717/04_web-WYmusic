@@ -140,3 +140,53 @@ export const hotRadios = [
     url: '/user/home?id=2313954'
   }
 ]
+
+// 登录后 头像的信息
+export const headBtnInfo = [
+  {
+    title: '我的主页',
+    link: '/user/home/'
+  },
+  {
+    title: '我的消息',
+    link: '/msg'
+  },
+  {
+    title: '我的等级',
+    link: '/user/home/'
+  },
+  {
+    title: 'VIP会员',
+    link: '/user/home/'
+  }
+]
+export const headBtnSet = [
+  {
+    title: '个人设置',
+    link: '/user/home/'
+  },
+  {
+    title: '实名认证',
+    link: '/user/home/'
+  }
+]
+
+// 通知-私信 /msg
+export const MsgBtnText = [
+  {
+    title: '我的',
+    link: '/msg/me'
+  },
+  {
+    title: '私信',
+    link: '/msg/private'
+  },
+  {
+    title: '评论',
+    link: '/msg/comment'
+  },
+  {
+    title: '通知',
+    link: '/msg/inform'
+  }
+]

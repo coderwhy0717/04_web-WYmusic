@@ -44,7 +44,7 @@ export default memo(function WYPlayDetail() {
     setIscurrentplay(indexs)
   }, [playList, currentSong])
   const changeScroll = (e) => {
-    console.log(e, '滚动')
+    // console.log(e, '滚动')
   }
   const dispatch = useDispatch()
   // 播放歌曲

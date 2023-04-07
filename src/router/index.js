@@ -130,6 +130,34 @@ const routes = [
     path: '/user/songs/rank/:id',
     component: React.lazy(() => import('@/pages/user-home/user-song-rank-page'))
   },
+  // msg/private 通知-私信
+  {
+    path: '/msg',
+    component: React.lazy(() => import('@/pages/msg-private')),
+    routes: [
+      {
+        path: '/msg',
+        exact: true,
+        render: () => <Redirect to="/msg/me" />
+      },
+      {
+        path: '/msg/me',
+        component: React.lazy(() => import('@/pages/msg-private/cpn/me'))
+      },
+      {
+        path: '/msg/private',
+        component: React.lazy(() => import('@/pages/msg-private/cpn/private'))
+      },
+      {
+        path: '/msg/comment',
+        component: React.lazy(() => import('@/pages/msg-private/cpn/comment'))
+      },
+      {
+        path: '/msg/inform',
+        component: React.lazy(() => import('@/pages/msg-private/cpn/inform'))
+      }
+    ]
+  },
   {
     path: '/err404',
     component: React.lazy(() => import('@/pages/error-cover'))
@@ -139,5 +167,9 @@ const routes = [
     component: React.lazy(() => import('@/pages/error-cover'))
   }
 ]
+
+// router.beforeEach((to, from, next) => {
+//   console.log(to,from,"路由器");
+// })
 
 export default routes

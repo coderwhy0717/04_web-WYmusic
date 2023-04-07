@@ -180,6 +180,7 @@ export default memo(function WYCurrentArtist(props) {
             </div>
             <div className="count">
               <div>
+                {/* 获取动态消息 api */}
                 <NavLink to={'/#'}>
                   <div className="numb">{userInfo?.profile?.eventCount}</div>
                   <span>动态</span>

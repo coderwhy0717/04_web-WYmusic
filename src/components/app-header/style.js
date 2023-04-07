@@ -84,19 +84,145 @@ export const HeaderRight = styled.div`
 
   .creation {
     margin: 0 10px;
-    padding: 5px 10px;
+    padding: 8px 15px;
     border: 0.5px solid #4f4f4f;
     border-radius: 16px;
     font-size: 12px;
-    transition: all 800ms ease;
+    transition: all 500ms ease;
+    a {
+      color: #c9c9c9;
+      text-decoration: none;
+    }
+
     &:hover {
       /* border: 0.5px solid #fff; */
       box-shadow: 0 0 2px 1px #fff;
       cursor: pointer;
     }
   }
+  .info {
+    position: relative;
+    z-index: 1;
+    margin-left: 10px;
+    margin-top: 20px;
+    padding: 0 0px 20px 0;
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+    }
+    /* msg-icon */
+    .img_msg {
+      display: ${(props) => (props.MsgIcon ? 'inline-block' : 'none')};
+      position: absolute;
+      top: -5px;
+      right: -6px;
+    }
+    .msg_index1 {
+      display: none;
+      margin: -2px 0 0 10px;
+    }
+    .msg_icon {
+      min-width: 17px;
+      height: 17px;
+      padding: 0 4px;
+      box-sizing: border-box;
+      background: #c20c0c;
+      border-radius: 18px;
+      border: 1px solid #242424;
+      line-height: 16px;
+      font-size: 12px;
+      white-space: nowrap;
+      color: #fff;
+      text-align: center;
+    }
+    .btn-info {
+      display: none;
+      position: absolute;
+      top: 38px;
+      left: -60px;
+      width: 160px;
+      background-color: #2b2b2b;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px 5px rgb(0, 0, 0, 0.4);
+      .infoac {
+        display: flex;
+        align-items: center;
+        padding-left: 25px;
+        height: 34px;
+        line-height: 34px;
+        cursor: pointer;
+        .left_icon {
+          text-align: center;
+          margin-top: -2px;
+          width: 18px;
+          height: 18px;
+          margin-right: 10px;
+        }
+        &:hover {
+          background-color: #353535;
+          color: #fff;
+        }
+      }
+      .ul_gang {
+        border-top: 2px solid #232323;
+        border-bottom: 2px solid #232323;
+      }
+
+      .out_go {
+        background-position: 0 -200px;
+      }
+      .info0 {
+        background-position: 0 -80px;
+      }
+      .info1 {
+        background-position: -20px -120px;
+      }
+      .info2 {
+        background-position: 0 -100px;
+      }
+      .info3 {
+        background-position: 0 -219px;
+      }
+      .conter0 {
+        background-position: 0 -139px;
+      }
+      .conter1 {
+        background-position: -20px -142px;
+      }
+    }
+    /* 画三角形 */
+    .sanj {
+      display: none;
+      position: absolute;
+      top: 35px;
+      left: 10px;
+      background-color: #fff;
+      border: 6px solid black;
+      border-right-color: #2b2b2b;
+      border-top-color: #2b2b2b;
+      transform: rotate(-45deg);
+    }
+
+    &:hover {
+      .btn-info {
+        display: inline-block;
+      }
+      .sanj {
+        display: inline-block;
+      }
+      .img_msg {
+        display: none;
+      }
+      .msg_index1 {
+        display: ${(props) => (props.MsgIcon ? 'inline-block' : 'none')};
+      }
+    }
+  }
 
   .login {
+    margin-left: 10px;
     &:hover a {
       color: #aaa;
     }

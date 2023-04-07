@@ -7,7 +7,14 @@ import { getKeyAction } from '../../../discover/other-pages/store/loginAction'
 import { Input, Select, Space, Button, Checkbox, Form } from 'antd'
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { changeLoginShowAction } from '../../../user-home/store/actionCreators'
+import { useHistory } from 'react-router-dom'
 const LoginCover = memo((props) => {
+  // showX 控制 页面的 X 还有样式
+  // LoginShowWindow 控制 登录弹窗出来后点击叉掉 返回登录页面从新获取 qrcode
+  const dispatch = useDispatch()
+  const history = useHistory()
+
+  const { showX = true, LoginShowWindow = false } = props
   const { LoginQRCode, QRCode } = useSelector(
     (state) => ({
       LoginQRCode: state.getIn(['userHome', 'LoginQRCode']),
@@ -15,19 +22,28 @@ const LoginCover = memo((props) => {
     }),
     shallowEqual
   )
+
   //1. 改 true
   const [showLogin, setShowLogin] = useState(true)
   const [phonePassword, setPhonePassword] = useState(true)
   // 3. 改 fasle
   const [phone, setPhone] = useState(false)
-  const dispatch = useDispatch()
+
   //2. 打开
   useEffect(() => {
     // 获取 key 和 二维码img  状态 等
     dispatch(getKeyAction())
-    return () => {}
-  }, [dispatch])
-
+    return () => {
+      dispatch(getKeyAction(2))
+    }
+  }, [dispatch, LoginShowWindow])
+  // 判断是否登录 成功
+  useEffect(() => {
+    if (QRCode.code === 803) {
+      console.log('登录成功')
+      history.go(-1)
+    }
+  }, [QRCode, history])
   //
   const changeLogin = (value) => {
     setShowLogin(!showLogin)
@@ -59,11 +75,16 @@ const LoginCover = memo((props) => {
   }
   const changeLoginShow = () => {
     // 传1进去就是取消定时器
+    console.log('取消')
     dispatch(getKeyAction(2))
     dispatch(changeLoginShowAction(false))
   }
   return (
-    <LoginCoverWrapper phonePassword={phonePassword} phone={phone}>
+    <LoginCoverWrapper
+      phonePassword={phonePassword}
+      phone={phone}
+      showX={showX}
+    >
       {showLogin ? (
         <div className="login-box">
           {QRCode.code === 802 ? (
@@ -80,7 +101,9 @@ const LoginCover = memo((props) => {
             <div>
               <div className="login-titles">
                 <div>登录</div>
-                <CloseOutlined className="x" onClick={changeLoginShow} />
+                {showX && (
+                  <CloseOutlined className="x" onClick={changeLoginShow} />
+                )}
               </div>
               <div className="top">
                 <img
@@ -252,6 +275,9 @@ const LoginCover = memo((props) => {
   )
 })
 
-LoginCover.propTypes = {}
+LoginCover.propTypes = {
+  showX: PropTypes.bool,
+  LoginShowWindow: PropTypes.bool
+}
 
 export default LoginCover

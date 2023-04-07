@@ -7,7 +7,7 @@ export const ArtistWrapper = styled.div`
   background: url(${require('@/assets/img/wrap-bg.png')});
 
   .left {
-    padding: 20px 30px 40px 39px;
+    padding: 25px 30px 40px 39px;
     flex: 1;
     overflow: hidden;
     display: ${(props) => {
@@ -20,7 +20,7 @@ export const ArtistWrapper = styled.div`
         margin-right: 8px;
       }
       div {
-        line-height: 50px;
+        line-height: 40px;
         color: #999;
         font-size: 14px;
       }

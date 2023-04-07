@@ -23,7 +23,15 @@ const defaultState = Map({
   artistAlbum: {},
   artistMv: {},
   artistText: {},
-  artistSimi: {}
+  artistSimi: {},
+  // 我的消息 所有通知 最新消息 getMessageNewCount
+  newMessageCount: {},
+  MsgIcon: true, // icon 通知-私信-消息 是否显示
+  // msg/private页面 通知-私信-消息
+  msgMe: {},
+  msgPrivate: {},
+  msgComment: {},
+  msgInform: {}
 })
 
 function reducer(state = defaultState, action) {
@@ -61,6 +69,19 @@ function reducer(state = defaultState, action) {
       return state.set('artistText', action.obj)
     case actionType.ARTIST_SIMI:
       return state.set('artistSimi', action.obj)
+    // msg/private页面 通知-私信-消息
+    case actionType.MSG_ME:
+      return state.set('msgMe', action.obj)
+    case actionType.MSG_PRIVATE:
+      return state.set('msgPrivate', action.obj)
+    case actionType.MSG_COMMENT:
+      return state.set('msgComment', action.obj)
+    case actionType.MSG_INFORM:
+      return state.set('msgInform', action.obj)
+    case actionType.MSG_ICON:
+      return state.set('MsgIcon', action.value)
+    case actionType.MESSAGE_NEW_COUNT:
+      return state.set('newMessageCount', action.obj)
     default:
       return state
   }

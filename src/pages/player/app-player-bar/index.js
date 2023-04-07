@@ -11,7 +11,8 @@ import {
   changeSequenceAction,
   getPlaySongDetailAction,
   getMaskCoverAction,
-  changePlayLyricsAction
+  changePlayLyricsAction,
+  getScrobbleAction
 } from '../store/actionCreators'
 import { formatDate, getPlayUrl, getSizeImage } from '@/utils/format-utils'
 import { ifCheckMusic } from '../../../services/player'
@@ -66,15 +67,16 @@ export default memo(function WYAppPlayerBar() {
     ifCheckMusic(currentSong.id).then((res) => {
       if (res.success) return
       // console.log(res.response.data, '检查播放')
-      const info = res.response.data
+      const info = res?.response?.data
       console.log(res, info, 'datra')
       dispatch(
         changePlayLyricsAction([
-          { time: 0, content: info.message, play: false }
+          { time: 0, content: info?.message, play: false }
         ])
       )
     })
     // console.log(audioRef.current,"aaaaaaaaaa")
+    // 首次进来 播放当前音乐
     getPlayUrl(currentSong.id).then((res) => {
       audioRef.current.src = res
       audioRef.current
@@ -115,6 +117,7 @@ export default memo(function WYAppPlayerBar() {
     }
   }, [onplaying])
   // 播放歌曲就触发
+
   const changeCurrentTime = (e) => {
     // *该歌词不支持自动滚动* 求滚动歌词
     if (playLyrics[0].key === 0) {
@@ -127,6 +130,7 @@ export default memo(function WYAppPlayerBar() {
       return
     }
     const currentTime = audioRef.current.currentTime * 1000
+
     if (isChanging) {
       setCurrentTime(currentTime)
       setProgress((currentTime / time) * 100)
@@ -182,6 +186,16 @@ export default memo(function WYAppPlayerBar() {
   }
   // 播放结束
   const changeEnded = () => {
+    console.dir(audioRef.current, 'audioRef.current')
+    // getScrobbleAction
+    console.log(audioRef.current.currentTime * 1000, 'first 听歌打卡')
+    dispatch(
+      getScrobbleAction(
+        currentSong.id,
+        currentSong.al.id,
+        audioRef.current.currentTime * 1000
+      )
+    )
     dispatch(changePlayingAction(false))
     if (sequence === 2) {
       audioRef.current.currentTime = 0

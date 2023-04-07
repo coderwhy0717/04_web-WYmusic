@@ -25,3 +25,12 @@ export const ARTIST_ALBUM = 'other-pages/ARTIST_ALBUM'
 export const ARTIST_MV = 'other-pages/ARTIST_MV'
 export const ARTIST_TEXT = 'other-pages/ARTIST_TEXT'
 export const ARTIST_SIMI = 'other-pages/ARTIST_SIMI'
+
+// msg/private页面 通知-私信-消息
+export const MSG_ME = 'other-pages/MSG_ME'
+export const MSG_PRIVATE = 'other-pages/MSG_PRIVATE'
+export const MSG_COMMENT = 'other-pages/MSG_COMMENT'
+export const MSG_INFORM = 'other-pages/MSG_INFORM'
+
+export const MSG_ICON = 'other-pages/MSG_ICON'
+export const MESSAGE_NEW_COUNT = 'other-pages/MESSAGE_NEW_COUNT'

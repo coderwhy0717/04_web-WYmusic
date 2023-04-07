@@ -4,9 +4,12 @@ import styled from 'styled-components'
 // left: calc(50% - 269px);
 export const LoginCoverWrapper = styled.div`
   /* background-color: #f5f5f5; */
-  position: absolute;
+  ${(props) =>
+    props.showX &&
+    `position: absolute;
   top: calc(50% - 212px);
-  left: calc(50% - 269px);
+  left: calc(50% - 269px);`}
+
   .login-box {
     position: relative;
     width: 538px;

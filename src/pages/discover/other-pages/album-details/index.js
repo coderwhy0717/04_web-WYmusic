@@ -73,7 +73,7 @@ export default memo(function WYAlbumDetail(props) {
               <Image
                 width={209}
                 height={209}
-                src={getSizeImage(albumDetail?.album?.picUrl, 209)}
+                src={getSizeImage(albumDetail?.album?.picUrl, 177, 'y')}
                 preview={{
                   src: albumDetail?.album?.picUrl
                 }}

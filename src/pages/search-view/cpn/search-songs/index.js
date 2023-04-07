@@ -7,6 +7,7 @@ import PlayIcon from '@/components/play-icon'
 // 歌曲
 const SearchSongs = memo((props) => {
   const { item = {} } = props
+  console.log(item, 'itemmmmm')
 
   return (
     <FormDetailWrapper>
@@ -32,26 +33,26 @@ const SearchSongs = memo((props) => {
       </div>
       {/*  <a href={} className="name" title={item.name}>*/}
       <div className="artist text-nowrap">
-        {item?.artists.map((artist) => {
+        {item?.ar.map((artist) => {
           return (
             <span key={artist.id} className="box-art">
               <NavLink className="a-link" to={`/discover/artist/${artist.id}`}>
                 {artist.name}
               </NavLink>
-              <span>&nbsp;{item?.artists.length > 1 ? '/' : ''}&nbsp;</span>
+              <span>&nbsp;{item?.ar.length > 1 ? '/' : ''}&nbsp;</span>
             </span>
           )
         })}
       </div>
       <div className="album text-nowrap">
         <NavLink
-          to={`/discover/albumDetail/${item?.album?.id}`}
-          title={item?.album?.name}
+          to={`/discover/albumDetail/${item?.al?.id}`}
+          title={item?.al?.name}
         >
-          《{item?.album?.name}》
+          《{item?.al?.name}》
         </NavLink>
       </div>
-      <div className="time">{formatMinuteSecond(item.duration)}</div>
+      <div className="time">{formatMinuteSecond(item.dt)}</div>
     </FormDetailWrapper>
   )
 })

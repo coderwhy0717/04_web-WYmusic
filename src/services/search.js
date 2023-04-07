@@ -12,7 +12,7 @@ export function SearchSuggest(keywords) {
 // 搜索页面的 信息
 export function getSearchPageMessage(keywords, type, limit) {
   return request({
-    url: '/search',
+    url: '/cloudsearch',
     params: {
       keywords,
       limit,

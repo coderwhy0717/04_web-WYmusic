@@ -96,6 +96,7 @@ img {
 }
 
 
+
 /* 多行文本溢出显示省略号(...) */
 
 .text-nowrap {
@@ -121,7 +122,9 @@ img {
 .sprite_covor {
   background: url(../img/sprite_cover.png) no-repeat 0 9999px;
 }
-
+.at_btn {
+  background: url(../img/at_btn.png) no-repeat 0 9999px;
+}
 .sprite_icon {
   background: url(../img/sprite_icon.png) no-repeat 0 9999px;
 }
@@ -164,6 +167,9 @@ img {
 }
 .playlist-c {
   background: url(../img/playlist.png) no-repeat 0 9999px;
+}
+.toplist_icon {
+  background: url(../img/toplist.png) no-repeat 0 9999px;
 }
 .image_cover {
   position: absolute;

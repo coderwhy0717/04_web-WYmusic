@@ -16,7 +16,7 @@ import WYComment from '../components/comment'
 import WYSimilarSongList from '../components/similar-songlist'
 import WYDownloadApp from '../components/download-app'
 import WYErrorCover from '../../../error-cover'
-import { Image } from 'antd'
+import { Image, Pagination } from 'antd'
 import { columns, getSongdetailCover } from '../components/song-type/local-data'
 
 import { SongListDetailsWrapper, SongListLeft, SongListRight } from './style'
@@ -50,6 +50,9 @@ export default memo(function WYSongListDetails(props) {
     songListUserInfo.identify && songListUserInfo.identify.imageUrl
   // 喜欢这个歌单的用户
   const subs = sld.subscribers ?? []
+  // 判断是否登录了
+  // const cookie =
+  // if()
   const tracks = sld.tracks ?? []
   // console.log(subs)
   const dispatch = useDispatch()
@@ -65,6 +68,9 @@ export default memo(function WYSongListDetails(props) {
   }, [err, history])
   const changeIsShow = () => {
     setIsShowText(!isShowText)
+  }
+  const onShowSizeChange = (current, pageSize) => {
+    console.log(current, pageSize)
   }
 
   return (
@@ -193,6 +199,16 @@ export default memo(function WYSongListDetails(props) {
           tracks={getSongdetailCover(tracks)}
         />
         <div className="playList-footer">
+          <Pagination
+            showSizeChanger
+            onShowSizeChange={onShowSizeChange}
+            defaultCurrent={1}
+            hideOnSinglePage
+            pageSizeOptions={[10, 20, 30]}
+            // pageSize={20}
+            total={40}
+          />
+
           <div className="text">查看更多内容，请下载客户端</div>
           <button className="download">立即下载</button>
         </div>

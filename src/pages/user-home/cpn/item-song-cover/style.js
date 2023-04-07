@@ -42,12 +42,20 @@ export const ItemSongCoverWrapper = styled.div`
     }
     /* 右边的color */
     .right {
+      position: relative;
       width: 320px;
       min-height: 39px;
       .bg {
         width: ${(props) => props.score + '%' ?? '0%'};
         height: 39px;
         background-color: #edf7fe;
+      }
+      .playCount {
+        position: absolute;
+        top: calc(50% - 5px);
+        left: 10px;
+        z-index: 999;
+        color: #666;
       }
     }
 

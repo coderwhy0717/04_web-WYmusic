@@ -29,7 +29,7 @@ export function getSeatchMessage(name) {
 }
 // search page input
 export function dSerachPageMessage(name, type = 1, limit = 20) {
-  return (dispatch) => {
+  return async (dispatch) => {
     getSearchPageMessage(name, type, limit).then((res) => {
       // console.log(res, 'res')
       if (type === 2000) {

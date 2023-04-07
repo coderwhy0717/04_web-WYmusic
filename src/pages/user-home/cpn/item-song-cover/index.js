@@ -5,6 +5,7 @@ import { NavLink } from 'react-router-dom'
 import PlayIcon from '@/components/play-icon'
 
 import { ItemSongCoverWrapper } from './style'
+import { objectChange } from '../../../../utils/format-utils'
 
 const ItemSongCover = memo((props) => {
   const { index = 1, item = {} } = props
@@ -38,6 +39,9 @@ const ItemSongCover = memo((props) => {
         </div>
         <div className="right">
           <div className="bg"></div>
+          {item?.playCount > 0 && (
+            <div className="playCount">{item.playCount}次</div>
+          )}
         </div>
       </div>
     </ItemSongCoverWrapper>

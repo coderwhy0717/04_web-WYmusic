@@ -27,7 +27,7 @@ export default memo(function App() {
           {renderRoutes(routes)}
         </Suspense>
 
-        <ErrorCover />
+        {/* <ErrorCover /> */}
         <WYAppFooter />
         <FloatButton.BackTop />
         <WYAppPlayerBar />

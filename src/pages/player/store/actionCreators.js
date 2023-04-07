@@ -2,6 +2,7 @@ import { getLyrics, getPlaySongDetail, ifCheckMusic } from '@/services/player'
 import { getSongLyrics } from '@/utils/format-lyrics'
 import * as actionType from './constants'
 import { changeShowErrorAction } from '@/pages/discover/other-pages/store/actionCreators'
+import { getScrobble } from '../../../services/player'
 
 const changePlayCurrentSongDetailAction = (songs) => ({
   type: actionType.CHANGE_CURRENT_SONG,
@@ -208,5 +209,14 @@ export function getPlaySongListAction(tracksOrId) {
 export function getMaskCoverAction(show) {
   return (dispatch) => {
     dispatch(changeMaskCoverAction(show))
+  }
+}
+
+// 听歌 打卡 听歌 最近一周
+export function getScrobbleAction(id, sourceid, time) {
+  return (dispatch) => {
+    getScrobble(id, sourceid, time).then((res) => {
+      console.log(res, '听歌打卡')
+    })
   }
 }

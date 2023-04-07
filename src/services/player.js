@@ -38,6 +38,19 @@ export function getLyrics(id) {
     }
   })
 }
+
+//  听歌 打卡
+export function getScrobble(id, sourceid, time) {
+  return request({
+    url: '/scrobble',
+    params: {
+      id,
+      sourceid,
+      time
+    }
+  })
+}
+
 // export function getPlayUrl(id) {
 //     console.log(id,"id")
 //     return request({

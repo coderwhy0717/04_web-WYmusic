@@ -1,17 +1,31 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 
 import { headerLinks } from '@/common/local.data'
 
-import { NavLink } from 'react-router-dom'
+import {
+  NavLink,
+  useHistory,
+  useLocation,
+  useParams,
+  useRouteMatch
+} from 'react-router-dom'
 import { HeaderWrapper, HeaderLeft, HeaderRight } from './style'
 import SearchCpn from '../search-cpn'
-import { useDispatch, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { changeLoginShowAction } from '../../pages/user-home/store/actionCreators'
 import LoginCover from '../../pages/login/cpn/login-cover'
+import {
+  chechCookieAction,
+  getMessageNewCountAction
+} from '../../pages/discover/other-pages/store/loginAction'
+import Cookie from '../../utils/cookie'
+import Localcache from '../../utils/cache'
+import { getSizeImage, objectChange } from '../../utils/format-utils'
+import { headBtnInfo, headBtnSet } from '../../common/local.data'
 
 // import axios from 'axios'
 
-export default memo(function WYAppHeader() {
+export default memo(function WYAppHeader(props) {
   // useEffect(() =>{
   //   console.log("first")
   //   axios.request({
@@ -36,16 +50,59 @@ export default memo(function WYAppHeader() {
       return <a href={item.link}>{item.title}</a>
     }
   }
-  const { LoginShowWindow } = useSelector((state) => ({
-    LoginShowWindow: state.getIn(['userHome', 'LoginShowWindow'])
-  }))
+  // 控制 消息图标
+
+  const { LoginShowWindow, newMessageCount, MsgIcon } = useSelector(
+    (state) => ({
+      LoginShowWindow: state.getIn(['userHome', 'LoginShowWindow']),
+      MsgIcon: state.getIn(['otherPages', 'MsgIcon']),
+      newMessageCount: state.getIn(['otherPages', 'newMessageCount'])
+    }),
+    shallowEqual
+  )
   const dispatch = useDispatch()
+  const history = useHistory()
+
   const changeLoginShow = () => {
     dispatch(changeLoginShowAction(true))
   }
+  // cookie
+  const cookie = Cookie.get('_cookie')
+  const routeUrl = useLocation()
+  const [count, setCount] = useState(0)
+  useEffect(() => {
+    // dispatch(chechCookieAction())
+    // dispatch(chechCookieAction(2))
+    // dispatch(chechCookieAction(3))
+    // dispatch(chechCookieAction(4))
+    // 通过路由改变去请求用户 我的消息 所有通知 最新消息 getMessageNewCount
+    dispatch(getMessageNewCountAction(cookie))
+
+    // setCount()
+  }, [dispatch, routeUrl, cookie])
+  useEffect(() => {
+    let counts =
+      newMessageCount.msg +
+      newMessageCount.comment +
+      newMessageCount.notice +
+      newMessageCount.forward
+    setCount(counts)
+  }, [newMessageCount])
+  // 获取本地数据
+  const info = Localcache.getCache('userInfo')
+  // 点击跳转 页面
+
+  const changeGoToUrl = (url, id) => {
+    if (url === '/user/home/') {
+      history.push(`${url}${id}`)
+    } else {
+      history.push(`${url}`)
+    }
+    console.log(url, id)
+  }
   return (
     <HeaderWrapper>
-      <div className="content wrap-v1 ">
+      <div className="content wrap-v1">
         <HeaderLeft>
           <a href="#/" className="logo sprite_01">
             网易云音乐
@@ -60,17 +117,68 @@ export default memo(function WYAppHeader() {
             })}
           </div>
         </HeaderLeft>
-        <HeaderRight>
+        <HeaderRight MsgIcon={MsgIcon}>
           {/* 封装的搜索 组件 */}
           <SearchCpn />
 
           <div className="creation">
             <NavLink to={'/login'}>创作者中心</NavLink>
           </div>
-          <div className="login">
-            {/* <NavLink to={'/login'}>登录</NavLink> */}
-            <p onClick={changeLoginShow}>登录</p>
-          </div>
+          {objectChange(info) ? (
+            <div className="info">
+              <div>
+                <img src={getSizeImage(info?.avatarUrl, 32)} alt=""></img>
+                {count > 0 && <span className="msg_icon img_msg">{count}</span>}
+              </div>
+              <div className="sanj"></div>
+              <div className="btn-info">
+                <ul>
+                  {headBtnInfo.map((item, index) => {
+                    return (
+                      <li
+                        className="infoac"
+                        key={item.title}
+                        onClick={(e) => changeGoToUrl(item.link, info?.userId)}
+                      >
+                        <span
+                          className={`info${index}  left_icon toplist_icon`}
+                        ></span>
+                        <span>{item.title}</span>
+                        {index === 1 && count > 0 && (
+                          <span className="msg_icon msg_index1">{count}</span>
+                        )}
+                      </li>
+                    )
+                  })}
+                </ul>
+                <ul className="ul_gang">
+                  {headBtnSet.map((item, index) => {
+                    return (
+                      <li
+                        className="infoac"
+                        key={item.title}
+                        onClick={(e) => changeGoToUrl(item.link, info?.userId)}
+                      >
+                        <span
+                          className={`conter${index} left_icon toplist_icon`}
+                        ></span>
+                        <span>{item.title}</span>
+                      </li>
+                    )
+                  })}
+                </ul>
+                <div className="infoac">
+                  <span className="out_go left_icon toplist_icon"></span>
+                  <span>退出</span>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="login">
+              {/* <NavLink to={'/login'}>登录</NavLink> */}
+              <p onClick={changeLoginShow}>登录</p>
+            </div>
+          )}
         </HeaderRight>
       </div>
       {/* 推荐 排行榜 歌单 主播电台 .... 的红色背景 */}

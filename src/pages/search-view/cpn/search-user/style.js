@@ -26,6 +26,7 @@ export const SearchUserWrapper = styled.div`
       font-size: 14px;
       display: flex;
       align-items: center;
+      margin-bottom: 8px;
       .namet {
         max-width: 70%;
         color: #000;
