@@ -1,7 +1,11 @@
-export function getSongLyrics(lyricString) {
+export function getSongLyrics(lyricString, fyString) {
+  // console.log(lyricString, '歌词')
+  //  fyString 翻译的歌词没有处理
   // [00:19.878]我很抱歉
   const parseExp = /\[(\d{2}):(\d{2})\.(\d{2,3})\]/
   const ly = lyricString.split('\n')
+  // const fy = fyString.split('\n')
+
   const lyrics = []
   for (let line of ly) {
     if (line) {

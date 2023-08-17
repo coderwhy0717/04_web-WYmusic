@@ -1,8 +1,10 @@
 /* @import "~antd/dist/antd.css"; */
 
+
 body {
   padding: 0;
   margin: 0;
+
   /* font-family: '幼圆'; */
   font-family: Arial, Helvetica, sans-serif;
 
@@ -10,6 +12,7 @@ body {
 h2{
   margin: 0;
 }
+
 html,
 body,
 #app {
@@ -20,6 +23,7 @@ body,
 body, html, h1, h2, h3, h4, h5, h6, ul, ol, li, dl, dt, dd, header, menu, section, p, input, td, th, ins {
   padding: 0;
   margin: 0;
+
 }
 
 ul, ol, li {
@@ -53,6 +57,7 @@ table {
 img {
   border: none;
   vertical-align: middle;
+  object-fit: cover;
 }
 
 /* // 12356
@@ -86,6 +91,7 @@ img {
 // .vip-9 {
 //   background-image: url(https://p5.music.126.net/obj/wo3DlcOGw6DClTvDisK1/4357872333/eb74/6e09/3b0f/fd6e216….png);
 // } */
+
 .wrap-v1 {
   width: 1050px;
   margin: 0 auto;
@@ -94,7 +100,19 @@ img {
   width: 982px;
   margin: 0 auto;
 }
+@media screen and (max-width: 760px) {
+  .wrap-v1 {
+    width: 100vw;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .wrap-v2 {
+    width: 100vw;
+    margin: 0 auto;
+    overflow: hidden;
+  }
 
+}
 
 
 /* 多行文本溢出显示省略号(...) */
@@ -171,6 +189,9 @@ img {
 .toplist_icon {
   background: url(../img/toplist.png) no-repeat 0 9999px;
 }
+.u-dicn-17 {
+  background: url(../img/frd_cover_mask.png) 0 -184px repeat-x;
+}
 .image_cover {
   position: absolute;
   left: 0;
@@ -218,14 +239,18 @@ overflow-y: auto;
   display: none;
 } */
 /* 局部滚动条样式设置 */
-::-webkit-scrollbar {
-  width: 6px;
+/* ::-webkit-scrollbar {
+  display: none;  Chrome Safari
+   width: 6px;
   background-color: #000;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(165, 165, 165, 0.5);
+  opacity: 0 !important;
+} */
+
+/* ::-webkit-scrollbar-thumb {
+ background: rgba(165, 165, 165, 0.5) !important;
   border-radius: 10px;
-}
+  opacity: 0 !important;
+} */
 
 /* 登录页面 弹窗 窗口 css */
 .loginCover {
@@ -236,6 +261,9 @@ overflow-y: auto;
   bottom: 0;
   z-index: 9999;
   background-color: rgb(0, 0, 0,.65);
+}
+.yi-top-search {
+  display: none;
 }
 
 

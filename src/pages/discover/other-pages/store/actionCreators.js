@@ -77,7 +77,7 @@ export function getSongDetailAction(ids) {
           return
         }
         console.log(res, '歌曲详情')
-        const songDetail = res.songs[0]
+        const songDetail = res?.songs[0]
         if (!songDetail) return
         dispatch(changeShowErrorAction(true))
         dispatch(changeSongDetailAction(songDetail))
@@ -98,23 +98,24 @@ export function getSimiarSongAction(id) {
 }
 // 歌单详情
 export function getSongListDetailAction(id) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(changeShowErrorAction(false))
-    getSongListDetail(id).then((res) => {
-      console.log(res, 'res')
+    const res = await getSongListDetail(id)
+    // console.log(res, 'res')
 
-      const songListDetail = res.playlist
-      if (res.code === 'ERR_NETWORK') {
-        dispatch(changeShowErrorAction('ERR_NETWORK'))
-        return
-      }
-      if (!songListDetail) return
+    const songListDetail = res.playlist
+    if (res.code === 'ERR_NETWORK') {
+      dispatch(changeShowErrorAction('ERR_NETWORK'))
+      return
+    }
+    if (!songListDetail) return
 
-      dispatch(changeShowErrorAction(true))
-      // console.log(songListDetail)
-      dispatch(getSongListUserInfoAction(songListDetail.creator.userId))
-      dispatch(changeSongListDetailAction(songListDetail))
-    })
+    dispatch(changeShowErrorAction(true))
+    // console.log(songListDetail)
+    dispatch(getSongListUserInfoAction(songListDetail.creator.userId))
+    dispatch(changeSongListDetailAction(songListDetail))
+
+    return songListDetail
   }
 }
 // 相关歌单
@@ -146,7 +147,7 @@ export function getUserInfoAction(ids) {
     const userlist = []
 
     for (let item of userInfo) {
-      userlist.push(item.userPoint.userId)
+      userlist.push(item?.userPoint?.userId)
     }
     for (let i = 0; i < ids.length; i++) {
       const isshow = userlist.findIndex((id) => id === ids[i] * 1)
@@ -177,20 +178,22 @@ export function getSongListUserInfoAction(id) {
 }
 // 专辑页面
 export function getCurrentAlbumDetailAction(id) {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(changeShowErrorAction(false))
+    //
+    console.log(id, '专辑id')
 
-    getAlbumDetail(id).then((res) => {
-      if (res.code === 'ERR_NETWORK') {
-        dispatch(changeShowErrorAction('ERR_NETWORK'))
-        return
-      }
-      if (!res) return
-      console.log(res, 'resss')
+    const res = await getAlbumDetail(id)
+    if (res.code === 'ERR_NETWORK') {
+      dispatch(changeShowErrorAction('ERR_NETWORK'))
+      return
+    }
+    if (!res) return
+    console.log(res, 'resss')
 
-      dispatch(changeShowErrorAction(true))
-      dispatch(changeCurrentAlbumDetailAction(res))
-    })
+    dispatch(changeShowErrorAction(true))
+    dispatch(changeCurrentAlbumDetailAction(res))
+    return res
   }
 }
 // ta的热门专辑

@@ -76,10 +76,16 @@ export default memo(function WYAppHeader(props) {
     // dispatch(chechCookieAction(3))
     // dispatch(chechCookieAction(4))
     // 通过路由改变去请求用户 我的消息 所有通知 最新消息 getMessageNewCount
-    dispatch(getMessageNewCountAction(cookie))
+    dispatch(getMessageNewCountAction(cookie)).then((res) => {
+      // console.log(res, 'res')
+      // 判断是否 无网络  ERR_NETWORK
+      if (res === 'ERR_NETWORK') {
+        history.push(`/${res}`)
+      }
+    })
 
     // setCount()
-  }, [dispatch, routeUrl, cookie])
+  }, [dispatch, routeUrl, cookie, history])
   useEffect(() => {
     let counts =
       newMessageCount.msg +
@@ -91,13 +97,28 @@ export default memo(function WYAppHeader(props) {
   // 获取本地数据
   const info = Localcache.getCache('userInfo')
   // 点击跳转 页面
-
   const changeGoToUrl = (url, id) => {
     if (url === '/user/home/') {
       history.push(`${url}${id}`)
+      return
     } else {
-      history.push(`${url}`)
+      // 首次进入判断 定位到有消息的页面
+      if (!!newMessageCount?.forward) {
+        history.push('/msg/me')
+        return
+      } else if (!!newMessageCount?.msg) {
+        history.push('/msg/private')
+        return
+      } else if (!!newMessageCount?.comment) {
+        history.push('/msg/comment')
+        return
+      } else if (!!newMessageCount?.notice) {
+        history.push('/msg/inform')
+        return
+      }
     }
+    history.push('/msg/me')
+
     console.log(url, id)
   }
   return (

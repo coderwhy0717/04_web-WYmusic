@@ -15,12 +15,12 @@ import { getPlaySongDetailAction } from '../../../../../player/store/actionCreat
 
 const MeItem = memo((props) => {
   // index newCount 都是控制红点
-  const { itemData = {}, index = -1, newCount = -1 } = props
+  const { itemData = {}, showDian = false } = props
   const dispatch = useDispatch()
   const history = useHistory()
   const data = JSON.parse(itemData?.json)
 
-  // console.log(data)
+  console.log(showDian, 'showDian')
 
   //  对@ at的数据提取处理
   const text = objectChange(data?.comment) && data?.comment?.content.split(' ')
@@ -40,23 +40,13 @@ const MeItem = memo((props) => {
   const changePlayMusic = (id) => {
     dispatch(getPlaySongDetailAction(id))
   }
-  // 最新的 红标点
-  const [arr, setArr] = useState([])
-  useEffect(() => {
-    const shu = []
-    for (let i = 0; i < newCount; i++) {
-      shu.push(i)
-    }
-    setArr(shu)
-  }, [newCount])
-  console.log()
-  console.log()
+
   // .utcOffset(8) new Date().getTime() -
   // dayjs().isAfter(dayjs(data?.comment?.time).add(1, 'day'))
 
   return (
     <MeItemWrapper>
-      {arr.includes(index) && <i className="red_dian"></i>}
+      {showDian && <i className="red_dian"></i>}
       <NavLink to={`/user/home/${data?.comment?.user?.userId}`}>
         <img
           src={getSizeImage(data?.comment?.user?.avatarUrl, 50, 'y')}
@@ -80,7 +70,7 @@ const MeItem = memo((props) => {
           <NavLink to={`/discover/playSong/${data?.resource?.id}`}>
             {/*dayjs().isAfter(dayjs(data?.comment?.time).add(1, 'hour') 判断 与 当前的时间相比如果 超过了一小时后  */}
             {
-              dayjs().isAfter(dayjs(data?.comment?.time).add(0, 'hour'))
+              dayjs().isAfter(dayjs(data?.comment?.time).add(1, 'hour'))
                 ? dayjs().isAfter(dayjs(data?.comment?.time).add(1, 'day')) // 判断与今天的时间相比如果 超过了1天
                   ? dayjs(itemData?.time).format('M月D日 HH:mm') // 月日 加 时间
                   : `${dayjs(data?.comment?.time)
@@ -152,7 +142,8 @@ const MeItem = memo((props) => {
 MeItem.propTypes = {
   itemData: PropTypes.object,
   index: PropTypes.number,
-  newCount: PropTypes.number
+  arr: PropTypes.array,
+  showDian: PropTypes.bool
 }
 
 export default MeItem

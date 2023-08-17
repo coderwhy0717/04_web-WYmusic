@@ -81,8 +81,11 @@ export const SongInfoWrapper = styled.div`
       .info-name {
         font-size: 12px;
         color: #999;
-        display: flex;
-        align-items: center;
+
+        p {
+          display: inline;
+          width: 100px;
+        }
         a {
           font-size: 12px;
           color: #0c73c2;

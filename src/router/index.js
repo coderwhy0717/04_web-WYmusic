@@ -100,6 +100,27 @@ const routes = [
         component: React.lazy(() =>
           import('@/pages/discover/other-pages/mv-detail')
         )
+      },
+      // 用户事件 动态 关注 粉丝
+      {
+        path: '/discover/user/event/:id',
+        component: React.lazy(() =>
+          import('@/pages/discover/c-pages/user-action/user-event')
+        )
+      },
+      // 关注
+      {
+        path: '/discover/user/follows/:id',
+        component: React.lazy(() =>
+          import('@/pages/discover/c-pages/user-action/user-follows')
+        )
+      },
+      // 粉丝
+      {
+        path: '/discover/user/fans/:id',
+        component: React.lazy(() =>
+          import('@/pages/discover/c-pages/user-action/user-fans')
+        )
       }
     ]
   },
@@ -146,7 +167,15 @@ const routes = [
       },
       {
         path: '/msg/private',
-        component: React.lazy(() => import('@/pages/msg-private/cpn/private'))
+        component: React.lazy(() => import('@/pages/msg-private/cpn/private')),
+        routes: [
+          {
+            path: '/msg/private/detail/:data',
+            component: React.lazy(() =>
+              import('@/pages/msg-private/cpn/private/cpn/private-detail')
+            )
+          }
+        ]
       },
       {
         path: '/msg/comment',

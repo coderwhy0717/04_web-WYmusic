@@ -3,9 +3,10 @@ import { NavLink } from 'react-router-dom'
 import { UserNameSortWrapper } from './style'
 
 export default memo(function WYUserNameSort(props) {
-  const { artists = [] } = props
+  const { artists = [], noWarp = false } = props
+
   return (
-    <UserNameSortWrapper className="text-nowrap">
+    <UserNameSortWrapper noWarp className={noWarp ? '' : 'text-nowrap'}>
       {artists.map((iten) => {
         return (
           <span className="artists" key={iten.id}>

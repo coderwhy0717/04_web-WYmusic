@@ -18,7 +18,7 @@ export const ArtistDetailWrapper = styled.div`
       height: 188px;
       border: 1px solid #ddd;
       text-align: center;
-      line-height: 185px;
+      line-height: 182px;
       margin-right: 35px;
       .image {
         width: 180px;
@@ -30,6 +30,7 @@ export const ArtistDetailWrapper = styled.div`
       }
     }
     .user-title {
+      margin: 3px 0 0 5px;
       flex: 1;
       .box {
         border-bottom: 1px solid #ddd;
@@ -38,6 +39,7 @@ export const ArtistDetailWrapper = styled.div`
           align-items: center;
           font-size: 14px;
           color: #666;
+          padding-bottom: 2px;
           .icon {
             width: 68px;
             height: 20px;
@@ -98,7 +100,7 @@ export const ArtistDetailWrapper = styled.div`
         position: relative;
         display: flex;
         align-items: center;
-        margin-bottom: 2px;
+        margin-bottom: 4px;
         .Lv {
           display: flex;
           margin: 0 10px;
@@ -129,6 +131,7 @@ export const ArtistDetailWrapper = styled.div`
         }
         .name {
           font-size: 22px;
+          font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
         }
         img {
         }
@@ -175,8 +178,12 @@ export const ArtistDetailWrapper = styled.div`
       }
       .count {
         display: flex;
-        margin-top: 10px;
+        margin-top: 6px;
         margin-left: -20px;
+        span {
+          display: inline-block;
+          margin-left: 2px;
+        }
         a:hover {
           color: #0c73c2;
           cursor: pointer;

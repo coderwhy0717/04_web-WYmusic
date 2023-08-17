@@ -24,11 +24,12 @@ instance.interceptors.request.use(
     // if (config.url === '/login/status') {
     //   config.params.cookie = co
     // }
+    // ----------------------
     if (config.params) {
       if (cookie) {
         config.params.cookie = cookie
         // encodeURIComponent()
-        console.log('添加了cookie')
+        // console.log('添加了cookie')
       }
     }
     // }
@@ -43,7 +44,7 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
   (res) => {
-    console.log('全局响应成功', res)
+    // console.log('全局响应成功', res)
     return res.data
   },
   (err) => {
@@ -63,6 +64,7 @@ instance.interceptors.response.use(
           console.log('其他错误信息')
       }
     }
+
     return err
   }
 )

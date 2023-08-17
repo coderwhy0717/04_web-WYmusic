@@ -21,7 +21,7 @@ const SearchCpn = memo((props) => {
   const [searchValue, setSearchValue] = useState('')
   const history = useHistory()
   const params = useParams()
-  console.log(props, params.name)
+  // console.log(props, params.name)
 
   const [bgcShow, setBgcShow] = useState(false)
   const { serachMessage } = useSelector(
@@ -60,6 +60,7 @@ const SearchCpn = memo((props) => {
   // 输入框内容变化时 触发 防抖
   // 变量
   let vars = true
+  let showInfo = true
   const ClickChange = debounce((e) => {
     // console.log(e.target.value, !e.target.value.length)
     setSearchValue(e.target.value)
@@ -77,15 +78,18 @@ const SearchCpn = memo((props) => {
     }
     // console.log(serachMessage)
     // console.log(objectChange(serachMessage))
-
+    if (!showInfo) {
+      setBgcShow(false)
+    }
     // 网络请求新数据
     dispatch(getSeatchMessage(e.target.value))
   }, 500)
   // 回车 跳转到搜索页面
   const ClickPressEnter = (e) => {
     if (!e.target.value.length) return
-    history.push(`/search/view/${e.target.value}`)
+    showInfo = false
     setBgcShow(false)
+    history.push(`/search/view/${e.target.value}`)
   }
   // 点击搜索图标
   const onClickIcon = () => {
@@ -178,7 +182,7 @@ const SearchCpn = memo((props) => {
           onClick={(e) => focus(searchValue)}
         />
       )}
-      {objectChange(serachMessage) && (
+      {objectChange(serachMessage) && bgcShow && (
         <div className="box-search">
           <div className="top">
             <div className="a-link" onClick={changeClickT}>

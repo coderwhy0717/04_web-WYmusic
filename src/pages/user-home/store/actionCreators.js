@@ -1,8 +1,10 @@
 import {
   getRadio,
+  getUserEventList,
   getUserInfo,
   getUSerPlaylist,
-  getUserSongs
+  getUserSongs,
+  getConcern
 } from '../../../services/otherPages'
 import * as actionType from './constans'
 
@@ -45,6 +47,26 @@ export const changeQRCodeAction = (QRCode) => ({
 export const changeLoginShowAction = (data) => ({
   type: actionType.LOGIN_SHOW_WINDOW,
   data
+})
+
+const changeUserEventAction = (list) => ({
+  type: actionType.USER_EVENT_LIST,
+  list
+})
+// 关注
+const changeUserFollows = (list) => ({
+  type: actionType.USER_FOLLOWS_LIST,
+  list
+})
+// 粉丝
+const changeUserFansList = (list) => ({
+  type: actionType.USER_FANS_LIST,
+  list
+})
+
+const changeConcernAction = (six) => ({
+  type: actionType.USER_CONCER_SIX,
+  six
 })
 
 // user/home 用户的信息
@@ -103,3 +125,41 @@ export function getUSerPlaylistAction(uid, list) {
     })
   }
 }
+
+// user/home 页面的 点击动态 关注 粉丝  /user/event?uid=122969642
+export function getUserEventListAction(uid, limit = 30, lasttime) {
+  return async (dispatch, getState) => {
+    if (lasttime) {
+      const arr = getState().getIn(['userHome', 'EventList'])
+      const newArr = { ...arr }
+      const res = await getUserEventList(uid, limit, lasttime)
+
+      newArr.events.push(...res.events)
+      newArr.lasttime = res.lasttime
+      dispatch(changeUserEventAction(newArr))
+      console.log(newArr, '加载更多')
+    } else {
+      const res = await getUserEventList(uid, limit)
+      console.log(res)
+      dispatch(changeUserEventAction(res))
+    }
+  }
+}
+
+// user/home 页面的 点击动态 里的 6个关注 /user/event?uid=122969642
+export function getConcernAction(uid, limit = 30, offset) {
+  return async (dispatch) => {
+    const res = await getConcern(uid, limit, offset)
+    console.log(res, '关注')
+    if (!res) return
+    dispatch(changeUserFollows(res))
+  }
+}
+// export function getUserEventListArrAction(uid, limit = 30) {
+//   return async (getState, dispatch) => {
+//     const arr = getState().getIn(['userHome', 'EventList'])
+//     console.log(arr)
+
+//     // const res = await getUserEventList(uid, limit)
+//   }
+// }

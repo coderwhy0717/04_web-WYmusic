@@ -119,13 +119,13 @@ export function formatMinuteSecond(time) {
 
 export async function getPlayUrl(id) {
   const res = await getSongUrl(id)
-  // console.log(res, 'gegeggg')
+  console.log(res, 'gegeggg')
   if (res?.code !== 200) return
   // console.log(res.data[0].url)
   if (res?.code === 200) return res.data[0].url
   // return `https://music.163.com/song/media/outer/url?id=${id}.mp3`
 }
-
+//
 export function getdescription(srting) {
   if (!srting) return
   const dsp = srting.split('\n')

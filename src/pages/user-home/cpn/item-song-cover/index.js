@@ -27,11 +27,13 @@ const ItemSongCover = memo((props) => {
               &nbsp;&nbsp;-&nbsp;&nbsp;
               {item.song.ar.map((items) => {
                 return (
-                  <span key={items.id}>
-                    <NavLink to={`/discover/artist/${items.id}`}>
-                      {items.name}
-                    </NavLink>
-                  </span>
+                  items.id !== 0 && (
+                    <span key={items.id}>
+                      <NavLink to={`/discover/artist/${items.id}`}>
+                        {items.name}
+                      </NavLink>
+                    </span>
+                  )
                 )
               })}
             </div>

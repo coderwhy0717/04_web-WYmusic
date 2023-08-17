@@ -4,9 +4,9 @@ export const AlbumDetailWrapper = styled.div`
   background: url(${require('@/assets/img/wrap-bg.png')});
   display: flex;
   .album-left {
-    display: ${(props) => {
+    /* display: ${(props) => {
       return props.err ? 'block' : 'none'
-    }};
+    }}; */
     width: 712px;
     padding: 47px 30px 40px 39px;
     .album-title {
@@ -55,14 +55,18 @@ export const AlbumDetailWrapper = styled.div`
           }
         }
       }
+
       .info {
         margin-bottom: 20px;
+        color: #666;
         .artists {
-          display: flex;
           margin-bottom: 0px;
+          .divbox {
+            display: inline;
+          }
         }
         div {
-          margin-bottom: 5px;
+          margin: 8px 0;
           a {
             color: #0c73c2;
           }
@@ -99,9 +103,6 @@ export const AlbumDetailWrapper = styled.div`
     }
   }
   .album-right {
-    display: ${(props) => {
-      return props.err ? 'block' : 'none'
-    }};
     flex: 1;
     padding: 20px 40px 40px 30px;
     .user-img {

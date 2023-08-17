@@ -46,12 +46,28 @@ export const changePlayingAction = (playing) => ({
   type: actionType.CHANGE_ONPLAYING,
   playing
 })
-
-export function changePlayNextSongAndSequenceAction(tag) {
+// 手机端
+const changeOpenAction = (open) => ({
+  type: actionType.CHANGE_OPEN,
+  open
+})
+export function changePlayNextSongAndSequenceAction(tag, YidoApp) {
   return (dispatch, getState) => {
     const sequence = getState().getIn(['player', 'sequence'])
     let playSongIndex = getState().getIn(['player', 'currentSongIndex'])
     const playList = getState().getIn(['player', 'playList'])
+    // 移动app  滑动切换歌曲
+    if (YidoApp) {
+      playSongIndex = tag
+      const song = playList[tag]
+
+      dispatch(changeCurrentSongIndexAction(tag))
+      console.log('first song', song)
+      dispatch(changePlayCurrentSongDetailAction(song))
+      //
+      dispatch(getLyricsAction(song.id))
+      return
+    }
     switch (sequence) {
       case 1: //随机播放
         let randomIndex = Math.floor(Math.random() * playList.length)
@@ -61,11 +77,16 @@ export function changePlayNextSongAndSequenceAction(tag) {
         playSongIndex = randomIndex
         break
       default: //顺序播放
+        console.log(playSongIndex, tag, 'playSongIndex <= 0')
+
         playSongIndex += tag
+
         if (playSongIndex > playList.length - 1) playSongIndex = 0
         if (playSongIndex < 0) playSongIndex = playList.length - 1
     }
     const song = playList[playSongIndex]
+    console.log(playSongIndex, 'palySongIndex。。.')
+
     dispatch(changeCurrentSongIndexAction(playSongIndex))
     console.log('first song', song)
 
@@ -88,14 +109,20 @@ export function getPlaySongDetailAction(ids, LinkedHashSet = true) {
       //有这首歌
       const song = playList[songIndex]
       const newPlayeList = [...playList]
-      newPlayeList.splice(songIndex, 1)
-      if (songIndex > currentSongIndex) {
-        newPlayeList.splice(index, 0, song)
-        dispatch(changeCurrentSongIndexAction(index))
-      } else {
-        newPlayeList.splice(currentSongIndex, 0, song)
-        dispatch(changeCurrentSongIndexAction(currentSongIndex))
-      }
+      console.log(newPlayeList)
+      console.log(newPlayeList.splice(songIndex, 1))
+
+      console.log(newPlayeList)
+      // 判断 当前播放index 不知道什么意思 修改下面两行了
+      // if (songIndex > currentSongIndex) {
+      //   newPlayeList.splice(index, 0, song)
+      //   dispatch(changeCurrentSongIndexAction(index))
+      // } else {
+      //   newPlayeList.splice(currentSongIndex, 0, song)
+      //   dispatch(changeCurrentSongIndexAction(currentSongIndex))
+      // }
+      newPlayeList.splice(songIndex, 0, song)
+      dispatch(changeCurrentSongIndexAction(songIndex))
 
       //
       if (LinkedHashSet) {
@@ -131,7 +158,7 @@ export function getPlaySongDetailAction(ids, LinkedHashSet = true) {
 
 // 获取歌词
 export function getLyricsAction(id, isShow = true) {
-  return (dispatch, getState) => {
+  return async (dispatch, getState) => {
     // 显示pages歌的详情页面 如果是和正在播放的歌曲相同的话 就不需要从重复请求歌词
     if (!isShow) {
       const currentSong = getState().getIn(['player', 'currentSong'])
@@ -143,34 +170,33 @@ export function getLyricsAction(id, isShow = true) {
         return
       }
     }
+    const res = await getLyrics(id)
+    if (res.code === 'ERR_NETWORK') {
+      dispatch(changeShowErrorAction('ERR_NETWORK'))
+      return
+    }
+    console.log(res, 'geci')
 
-    getLyrics(id).then((res) => {
-      if (res.code === 'ERR_NETWORK') {
-        dispatch(changeShowErrorAction('ERR_NETWORK'))
-        return
-      }
-      console.log(res, 'geci')
+    // if(!res.lrc) return
+    const ly = res.lrc && res.lrc.lyric
+    const fy = res.tlyric && res.tlyric.lyric
 
-      // if(!res.lrc) return
-      const ly = res.lrc && res.lrc.lyric
+    if (!ly) {
+      dispatch(
+        changePlayLyricsAction([{ time: 0, content: '这首歌曲没有歌词' }])
+      )
 
-      if (!ly) {
-        dispatch(
-          changePlayLyricsAction([{ time: 0, content: '这首歌曲没有歌词' }])
-        )
+      return
+    }
 
-        return
-      }
-
-      const lyrics = getSongLyrics(ly)
-      if (isShow) {
-        // console.log(lyrics,"播放歌词")
-        dispatch(changePlayLyricsAction(lyrics))
-      } else {
-        // console.log(lyrics,"页面歌词")
-        dispatch(changePagesLyricsAction(lyrics))
-      }
-    })
+    const lyrics = getSongLyrics(ly, fy)
+    if (isShow) {
+      // console.log(lyrics, '播放歌词')
+      dispatch(changePlayLyricsAction(lyrics))
+    } else {
+      console.log(lyrics, '页面歌词')
+      dispatch(changePagesLyricsAction(lyrics))
+    }
     // ifCheckMusic(id).then((res) => {
     //   if (res.success) return
     //   // console.log(res.response.data, '检查播放')
@@ -188,10 +214,10 @@ export function getLyricsAction(id, isShow = true) {
 // albumdetail 播放专辑 所有歌曲
 export function getPlaySongListAction(tracksOrId) {
   return (dispatch) => {
-    const currentSong = tracksOrId[0]
     // 通过tracks类型鉴别 如果不是id数字 类型就是播放所有歌曲
     if (typeof tracksOrId === 'object') {
       // 当前歌曲
+      const currentSong = tracksOrId[0]
       dispatch(changePlayCurrentSongDetailAction(currentSong))
       dispatch(getLyricsAction(currentSong.id))
       // 当前歌曲index
@@ -218,5 +244,12 @@ export function getScrobbleAction(id, sourceid, time) {
     getScrobble(id, sourceid, time).then((res) => {
       console.log(res, '听歌打卡')
     })
+  }
+}
+
+//  手机端APP 点击歌曲名字进入详情页
+export function getOpenAction(open) {
+  return (dispatch) => {
+    dispatch(changeOpenAction(open))
   }
 }

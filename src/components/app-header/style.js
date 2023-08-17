@@ -1,6 +1,9 @@
 import styled from 'styled-components'
 
 export const HeaderWrapper = styled.div`
+  @media screen and (max-width: 760px) {
+    display: none;
+  }
   width: 100%;
   height: 70px;
   font-size: 14px;

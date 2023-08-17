@@ -3,7 +3,7 @@ import React, { memo } from 'react'
 import { MvWrapper } from './style'
 
 const Mv = memo((props) => {
-  return <MvWrapper>Mv</MvWrapper>
+  return <MvWrapper>MV页面</MvWrapper>
 })
 
 Mv.propTypes = {}

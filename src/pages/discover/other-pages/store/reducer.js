@@ -30,6 +30,8 @@ const defaultState = Map({
   // msg/private页面 通知-私信-消息
   msgMe: {},
   msgPrivate: {},
+  //  私信内容
+  PrivateConent: [],
   msgComment: {},
   msgInform: {}
 })
@@ -82,6 +84,9 @@ function reducer(state = defaultState, action) {
       return state.set('MsgIcon', action.value)
     case actionType.MESSAGE_NEW_COUNT:
       return state.set('newMessageCount', action.obj)
+    case actionType.MSG_PRIVATE_CONENT:
+      return state.set('PrivateConent', action.arr)
+
     default:
       return state
   }

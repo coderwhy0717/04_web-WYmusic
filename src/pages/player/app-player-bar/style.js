@@ -1,14 +1,82 @@
 import styled from 'styled-components'
 
 export const AppPlayerBarWrapper = styled.div`
+  /* 移动端 */
+  @media screen and (max-width: 760px) {
+    width: 100vw;
+
+    .wrap {
+      width: 100vw;
+      margin: 0;
+    }
+    .content {
+      .content-top {
+        .title {
+          color: red !important;
+        }
+      }
+    }
+    .yi-dong {
+      display: block !important;
+
+      position: absolute;
+      right: 60px;
+      width: 50px;
+      .yi-play {
+        position: absolute;
+        top: 10px;
+        left: 8px;
+        width: 20px;
+        height: 17px;
+        overflow: hidden;
+        /* background-color: red; */
+        background-position: -8px
+          ${(props) => (props.isPlaying ? '-175px' : '-215px')};
+      }
+      .yi-play-caid {
+        position: absolute;
+        top: 0px;
+        right: -40px;
+        color: #fff;
+        font-size: 30px;
+      }
+    }
+    .cover {
+      display: ${(props) => {
+        return props.maskCover ? 'block' : 'none'
+      }};
+    }
+    .yid-music-cover {
+      display: block !important;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 70%;
+      padding-left: 15px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      font-size: 12px;
+      overflow: hidden;
+    }
+    color: red !important;
+  }
+
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
+
   background-position: 0 0;
   background-repeat: repeat;
   height: 52px;
-  z-index: 999999999;
+  z-index: 9999999999;
+  .yi-dong {
+    display: none;
+  }
+  .yid-music-cover {
+    display: none;
+  }
   .wrap {
     position: relative;
     display: flex;
@@ -29,42 +97,30 @@ export const AppPlayerBarWrapper = styled.div`
     z-index: -1;
   }
 `
-export const PlayerBarLeft = styled.div`
-  display: flex;
-  align-items: center;
-  width: 137px;
-  .rwa {
-    width: 28px;
-    height: 28px;
-    cursor: pointer;
-  }
 
-  .prev {
-    background-position: 0 -130px;
-    :hover {
-      background-position: -30px -130px;
-    }
-  }
-  .play {
-    width: 36px;
-    height: 36px;
-    margin: 0 8px;
-    cursor: pointer;
-
-    background-position: 0 ${(props) => (props.isPlaying ? '-165px' : '-204px')};
-    :hover {
-      background-position: -40px
-        ${(props) => (props.isPlaying ? '-165px' : '-204px')};
-    }
-  }
-  .next {
-    background-position: -80px -130px;
-    :hover {
-      background-position: -110px -130px;
-    }
-  }
-`
 export const PlayerBarCenter = styled.div`
+  @media screen and (max-width: 760px) {
+    display: none;
+    position: absolute;
+    left: 0;
+    width: 70%;
+    padding-left: 20px;
+
+    .image {
+      .image-a {
+        display: none;
+      }
+      img {
+        border-radius: 50px;
+      }
+    }
+    .content {
+      line-height: 40px;
+      .content-footer {
+        display: none !important;
+      }
+    }
+  }
   width: 631px;
   display: flex;
   align-items: center;
@@ -166,6 +222,10 @@ export const PlayerBarCenter = styled.div`
   }
 `
 export const PlayerBarRight = styled.div`
+  @media screen and (max-width: 760px) {
+    display: none;
+  }
+
   width: 214px;
   display: flex;
   align-items: center;

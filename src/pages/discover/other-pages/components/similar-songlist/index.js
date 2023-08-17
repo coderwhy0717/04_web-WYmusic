@@ -28,7 +28,9 @@ export default memo(function WYSimilarSongList(props) {
               <div className="by">
                 <span>by</span>
                 <NavLink to={`/user/home/${item.creator.userId}`}>
-                  {item.creator.nickname}
+                  <span className="hot-songList text-nowrap">
+                    {item.creator.nickname}
+                  </span>
                   {userInfo[index]?.profile?.avatarDetail?.identityIconUrl ? (
                     <img
                       src={getSizeImage(

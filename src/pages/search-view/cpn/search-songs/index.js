@@ -7,7 +7,7 @@ import PlayIcon from '@/components/play-icon'
 // 歌曲
 const SearchSongs = memo((props) => {
   const { item = {} } = props
-  console.log(item, 'itemmmmm')
+  // console.log(item, 'itemmmmm')
 
   return (
     <FormDetailWrapper>

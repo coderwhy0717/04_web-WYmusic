@@ -14,6 +14,7 @@ import WYAppHeader from 'components/app-header'
 import WYAppFooter from 'components/app-footer'
 import WYAppPlayerBar from '@/pages/player/app-player-bar'
 import ErrorCover from './pages/error-cover'
+import AppYidSearch from './components/app-yid-search'
 
 // import newstore from './newstore'
 export default memo(function App() {
@@ -22,7 +23,8 @@ export default memo(function App() {
     <Provider store={store}>
       <HashRouter>
         <WYAppHeader />
-
+        {/* 手机端 */}
+        <AppYidSearch />
         <Suspense fallback={<div>page loading</div>}>
           {renderRoutes(routes)}
         </Suspense>
@@ -30,6 +32,7 @@ export default memo(function App() {
         {/* <ErrorCover /> */}
         <WYAppFooter />
         <FloatButton.BackTop />
+        {/* 手机端 */}
         <WYAppPlayerBar />
       </HashRouter>
     </Provider>

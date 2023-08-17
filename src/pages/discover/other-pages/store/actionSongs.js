@@ -22,7 +22,7 @@ export function getSongsAction(all, offsets, hot, limit = 35) {
         dispatch(changeShowErrorAction('ERR_NETWORK'))
         return
       }
-      console.log(res, 'res')
+      // console.log(res, 'res')
       if (!res.playlists) return
       dispatch(changeSongsAction(res))
     })

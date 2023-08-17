@@ -4,65 +4,71 @@ import * as actionType from './constants'
 const defaultState = Map({
   playList: [
     {
-      name: '无人区玫瑰-一颗狼星',
-      id: 2031679013,
+      name: '戒不掉（原声版）',
+      id: 1299889486,
       pst: 0,
       t: 0,
       ar: [
         {
-          id: 55086154,
-          name: '厌倦则走',
+          id: 13451731,
+          name: '欧阳耀莹',
           tns: [],
           alias: []
         }
       ],
       alia: [],
-      pop: 5,
+      pop: 100,
       st: 0,
-      rt: '',
+      rt: null,
       fee: 8,
-      v: 5,
+      v: 28,
       crbt: null,
       cf: '',
       al: {
-        id: 162088253,
-        name: '无人区玫瑰',
+        id: 72147376,
+        name: '戒不掉（原声版）',
         picUrl:
-          'https://p1.music.126.net/dhfNdMsRh48p72LIRwnsEQ==/109951168481782798.jpg',
+          'https://p1.music.126.net/h8fo0jMwdGOfAc54xvYJAg==/109951163446911351.jpg',
         tns: [],
-        pic_str: '109951168481782798',
-        pic: 109951168481782800
+        pic_str: '109951163446911351',
+        pic: 109951163446911340
       },
-      dt: 233156,
+      dt: 186875,
       h: {
         br: 320000,
         fid: 0,
-        size: 9328893,
-        vd: -61049,
-        sr: 44100
+        size: 7477535,
+        vd: -31647,
+        sr: 48000
       },
       m: {
         br: 192000,
         fid: 0,
-        size: 5597353,
-        vd: -58426,
-        sr: 44100
+        size: 4486559,
+        vd: -29021,
+        sr: 48000
       },
       l: {
         br: 128000,
         fid: 0,
-        size: 3731583,
-        vd: -56681,
-        sr: 44100
+        size: 2991071,
+        vd: -27316,
+        sr: 48000
       },
       sq: {
-        br: 889961,
+        br: 680606,
         fid: 0,
-        size: 25937480,
-        vd: -61530,
-        sr: 44100
+        size: 15898533,
+        vd: -31643,
+        sr: 48000
       },
-      hr: null,
+      hr: {
+        br: 1431910,
+        fid: 0,
+        size: 33448530,
+        vd: -31647,
+        sr: 48000
+      },
       a: null,
       cd: '01',
       no: 1,
@@ -72,12 +78,12 @@ const defaultState = Map({
       djId: 0,
       copyright: 0,
       s_id: 0,
-      mark: 524288,
-      originCoverType: 0,
+      mark: 536879168,
+      originCoverType: 1,
       originSongSimpleData: null,
       tagPicList: null,
       resourceState: true,
-      version: 5,
+      version: 28,
       songJumpInfo: null,
       entertainmentTags: null,
       awardTags: null,
@@ -88,9 +94,366 @@ const defaultState = Map({
       rtype: 0,
       rurl: null,
       mv: 0,
+      publishTime: 1533571200000
+    },
+    {
+      name: '凄美地',
+      id: 436346833,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 2843,
+          name: '郭顶',
+          tns: [],
+          alias: []
+        }
+      ],
+      alia: [],
+      pop: 100,
+      st: 0,
+      rt: null,
+      fee: 8,
+      v: 48,
+      crbt: null,
+      cf: '',
+      al: {
+        id: 35005583,
+        name: '飞行器的执行周期',
+        picUrl:
+          'https://p1.music.126.net/wSMfGvFzOAYRU_yVIfquAA==/2946691248081599.jpg',
+        tns: [],
+        pic: 2946691248081599
+      },
+      dt: 250653,
+      h: {
+        br: 320000,
+        fid: 0,
+        size: 10028974,
+        vd: -50528,
+        sr: 44100
+      },
+      m: {
+        br: 192000,
+        fid: 0,
+        size: 6017402,
+        vd: -47926,
+        sr: 44100
+      },
+      l: {
+        br: 128000,
+        fid: 0,
+        size: 4011616,
+        vd: -46276,
+        sr: 44100
+      },
+      sq: {
+        br: 935551,
+        fid: 0,
+        size: 29312378,
+        vd: -50745,
+        sr: 44100
+      },
+      hr: null,
+      a: null,
+      cd: '1',
+      no: 1,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 1,
+      s_id: 0,
+      mark: 8192,
+      originCoverType: 1,
+      originSongSimpleData: null,
+      tagPicList: null,
+      resourceState: true,
+      version: 48,
+      songJumpInfo: null,
+      entertainmentTags: null,
+      awardTags: null,
+      single: 0,
+      noCopyrightRcmd: null,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 7003,
+      mv: 5404470,
+      publishTime: 1480003200000
+    },
+    {
+      name: '向云端',
+      id: 2049512697,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 1192268,
+          name: '小霞',
+          tns: [],
+          alias: []
+        },
+        {
+          id: 36985903,
+          name: '海洋Bo',
+          tns: [],
+          alias: []
+        }
+      ],
+      alia: [],
+      pop: 100,
+      st: 0,
+      rt: '',
+      fee: 8,
+      v: 3,
+      crbt: null,
+      cf: '',
+      al: {
+        id: 166146490,
+        name: '向云端',
+        picUrl:
+          'https://p2.music.126.net/TmOHxaGnFNlwNX8aPz66oA==/109951168638913915.jpg',
+        tns: [],
+        pic_str: '109951168638913915',
+        pic: 109951168638913920
+      },
+      dt: 251613,
+      h: {
+        br: 320000,
+        fid: 0,
+        size: 10066605,
+        vd: -29886,
+        sr: 48000
+      },
+      m: {
+        br: 192000,
+        fid: 0,
+        size: 6039981,
+        vd: -27277,
+        sr: 48000
+      },
+      l: {
+        br: 128000,
+        fid: 0,
+        size: 4026669,
+        vd: -25558,
+        sr: 48000
+      },
+      sq: {
+        br: 915752,
+        fid: 0,
+        size: 28801918,
+        vd: -29935,
+        sr: 48000
+      },
+      hr: {
+        br: 1683323,
+        fid: 0,
+        size: 52943266,
+        vd: -29903,
+        sr: 48000
+      },
+      a: null,
+      cd: '01',
+      no: 1,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 0,
+      s_id: 0,
+      mark: 536879104,
+      originCoverType: 1,
+      originSongSimpleData: null,
+      tagPicList: null,
+      resourceState: true,
+      version: 3,
+      songJumpInfo: null,
+      entertainmentTags: null,
+      awardTags: null,
+      single: 0,
+      noCopyrightRcmd: null,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 0,
+      mv: 0,
       publishTime: 0
     },
-
+    {
+      name: 'The Way I Still Love You',
+      id: 28718313,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 42608,
+          name: 'Reynard Silva',
+          tns: [],
+          alias: []
+        }
+      ],
+      alia: [],
+      pop: 100,
+      st: 0,
+      rt: null,
+      fee: 8,
+      v: 16,
+      crbt: null,
+      cf: '',
+      al: {
+        id: 2866545,
+        name: 'Reynard Silva',
+        picUrl:
+          'https://p1.music.126.net/JyPsd_g00M-4mqXLLtHncw==/5984641790343690.jpg',
+        tns: [],
+        pic: 5984641790343690
+      },
+      dt: 226847,
+      h: {
+        br: 320000,
+        fid: 0,
+        size: 9076027,
+        vd: -61516,
+        sr: 44100
+      },
+      m: {
+        br: 192000,
+        fid: 0,
+        size: 5445634,
+        vd: -58906,
+        sr: 44100
+      },
+      l: {
+        br: 128000,
+        fid: 0,
+        size: 3630437,
+        vd: -57234,
+        sr: 44100
+      },
+      sq: null,
+      hr: null,
+      a: null,
+      cd: '1',
+      no: 8,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 2,
+      s_id: 0,
+      mark: 270336,
+      originCoverType: 1,
+      originSongSimpleData: null,
+      tagPicList: null,
+      resourceState: true,
+      version: 16,
+      songJumpInfo: null,
+      entertainmentTags: null,
+      awardTags: null,
+      single: 0,
+      noCopyrightRcmd: null,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 0,
+      mv: 0,
+      publishTime: 1393948800000
+    },
+    {
+      name: '送别',
+      id: 1973414736,
+      pst: 0,
+      t: 0,
+      ar: [
+        {
+          id: 1050282,
+          name: '房东的猫',
+          tns: [],
+          alias: []
+        }
+      ],
+      alia: ['《去你家吃饭好吗2》主题曲'],
+      pop: 100,
+      st: 0,
+      rt: '',
+      fee: 8,
+      v: 5,
+      crbt: null,
+      cf: '',
+      al: {
+        id: 149951384,
+        name: '去你家吃饭好吗2 节目原声带',
+        picUrl:
+          'https://p1.music.126.net/x3YO1L8Z8srNivWVlJnuvQ==/109951167793742306.jpg',
+        tns: [],
+        pic_str: '109951167793742306',
+        pic: 109951167793742300
+      },
+      dt: 169034,
+      h: {
+        br: 320002,
+        fid: 0,
+        size: 6764205,
+        vd: -13037,
+        sr: 48000
+      },
+      m: {
+        br: 192002,
+        fid: 0,
+        size: 4058541,
+        vd: -10396,
+        sr: 48000
+      },
+      l: {
+        br: 128002,
+        fid: 0,
+        size: 2705709,
+        vd: -8619,
+        sr: 48000
+      },
+      sq: {
+        br: 727933,
+        fid: 0,
+        size: 15380728,
+        vd: -13747,
+        sr: 48000
+      },
+      hr: {
+        br: 1495111,
+        fid: 0,
+        size: 31590678,
+        vd: -12920,
+        sr: 48000
+      },
+      a: null,
+      cd: '01',
+      no: 1,
+      rtUrl: null,
+      ftype: 0,
+      rtUrls: [],
+      djId: 0,
+      copyright: 0,
+      s_id: 0,
+      mark: 536870912,
+      originCoverType: 1,
+      originSongSimpleData: null,
+      tagPicList: null,
+      resourceState: true,
+      version: 5,
+      songJumpInfo: null,
+      entertainmentTags: null,
+      awardTags: null,
+      single: 0,
+      noCopyrightRcmd: null,
+      rtype: 0,
+      rurl: null,
+      mst: 9,
+      cp: 2709823,
+      mv: 14555909,
+      publishTime: 0
+    },
     {
       name: '我记得',
       id: 1974443814,
@@ -178,7 +541,6 @@ const defaultState = Map({
       mv: 0,
       publishTime: 1661702400000
     },
-
     {
       name: '天外来物',
       id: 1463165983,
@@ -709,6 +1071,8 @@ const defaultState = Map({
   onplaying: false,
   // 遮罩层
   maskCover: false
+  //  手机端APP 点击歌曲名字进入详情页
+  // open: false
 })
 
 function reducer(state = defaultState, action) {
@@ -731,6 +1095,8 @@ function reducer(state = defaultState, action) {
       return state.set('onplaying', action.playing)
     case actionType.CHANGE_MASK_COVER:
       return state.set('maskCover', action.show)
+    case actionType.CHANGE_OPEN:
+      return state.set('open', action.open)
     default:
       return state
   }

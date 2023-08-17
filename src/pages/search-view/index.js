@@ -19,7 +19,7 @@ import {
 import { SearchViewWrapper } from './style'
 
 const SearchView = memo((props) => {
-  console.log(props.match)
+  // console.log(props.match)
   const arrHead = [
     {
       title: '单曲',
@@ -108,15 +108,16 @@ const SearchView = memo((props) => {
         <SearchCpn lengthInput={true} />
         <div className="search-title">
           <span>搜索</span>
-          <span className="name">"{props.match.params.name}"</span>, 找到
+          <span className="name">"{props?.match?.params?.name}"</span>, 找到
           <span className="number">
-            {searchPageMessage[currentName]?.length ?? 0}
+            {objectChange(searchPageMessage) &&
+              (searchPageMessage[currentName]?.length ?? 0)}
           </span>
           {text[currentType]}
         </div>
         <div className="form">
           <div className="form-head">
-            {arrHead.map((item, index) => {
+            {arrHead?.map((item, index) => {
               return (
                 <div
                   key={item.title}

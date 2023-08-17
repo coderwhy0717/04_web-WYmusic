@@ -10,6 +10,8 @@ export default memo(function WYPlayBtn(props) {
 
   const dispatch = useDispatch()
   const playMusic = () => {
+    console.log(tracksOrId)
+
     dispatch(getPlaySongListAction(tracksOrId))
   }
 

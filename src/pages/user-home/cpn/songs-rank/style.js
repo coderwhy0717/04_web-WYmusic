@@ -7,8 +7,9 @@ export const SongsRankWrapper = styled.div`
       align-items: center;
       justify-content: space-between;
       color: #444;
-      padding-bottom: 2px;
+      padding-bottom: 5px;
       border-bottom: 2px solid #c20c0c;
+      font-family: 'Microsoft Yahei', Arial, Helvetica, sans-serif;
       .left {
         display: flex;
         align-items: center;

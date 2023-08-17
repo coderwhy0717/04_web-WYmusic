@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const MsgPrivateWrapper = styled.div`
   background-color: #f5f5f5;
+
   .msg_private {
     display: flex;
     margin-top: 5px;
@@ -11,6 +12,7 @@ export const MsgPrivateWrapper = styled.div`
     .left {
       width: 185px;
       background-color: #f7f7f7;
+      background: linear-gradient(to bottom, #f9f9f9, #f7f7f7);
       .msg_index1 {
         display: inline-block;
         margin: -2px 0 0 10px;
@@ -85,7 +87,7 @@ export const MsgPrivateWrapper = styled.div`
       }
       .read {
         width: 100%;
-        height: 100vh;
+        /* height: 100vh; */
         background-color: #fff;
         padding-top: 25px;
         border-right: 1px solid #d3d3d3;
@@ -103,14 +105,38 @@ export const MsgPrivateWrapper = styled.div`
       }
     }
     .right {
-      padding: 50px 40px;
+      padding-top: 45px;
       flex: 1;
       .top-name {
+        margin: 0 40px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         font-size: 14px;
         font-weight: bold;
-        padding-bottom: 10px;
+        padding-bottom: 8px;
         border-bottom: 2px solid #d13030;
         color: #333;
+        .rome {
+          font-size: 12px;
+          height: 20px;
+          color: #999;
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          &:hover {
+            text-decoration: underline;
+          }
+          .shan {
+            width: 13px;
+            height: 14px;
+            background-position: 0 -284px;
+            margin-right: 5px;
+            &:hover {
+              background-position: -20px -284px;
+            }
+          }
+        }
       }
     }
   }

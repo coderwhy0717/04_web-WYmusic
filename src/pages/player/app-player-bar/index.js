@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useRef, useState } from 'react'
 import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 
 import { NavLink } from 'react-router-dom'
-import { Slider, message } from 'antd'
+import { Slider, message, Progress, Space } from 'antd'
 
 import {
   changePlayingAction,
@@ -25,6 +25,9 @@ import {
   PlayerBarLeft,
   PlayerBarRight
 } from './style'
+import { MenuUnfoldOutlined } from '@ant-design/icons'
+import AppYidMusicCover from './c-cpns/app-yid-music-cover'
+import PlayBtn from './c-cpns/play-btn'
 // import { objectChange } from '../../../utils/format-utils'
 export default memo(function WYAppPlayerBar() {
   const audioRef = useRef()
@@ -59,16 +62,20 @@ export default memo(function WYAppPlayerBar() {
     // dispatch(getPlaySongDetailAction(1813864802))
     // dispatch(getPlaySongDetailAction(33162226))
     // dispatch(getPlaySongDetailAction(1484537845))
-    // 首次播放
-    dispatch(getPlaySongDetailAction(2031679013))
+    // 首次播放 2049512697
+    // dispatch(getPlaySongDetailAction(1973414736))
+    // dispatch(getPlaySongDetailAction(2049512697))
+    dispatch(getPlaySongDetailAction(1299889486))
   }, [dispatch])
   useEffect(() => {
     // 音乐是否可用
     ifCheckMusic(currentSong.id).then((res) => {
+      console.log(res.success, 'aaa')
+
       if (res.success) return
       // console.log(res.response.data, '检查播放')
       const info = res?.response?.data
-      console.log(res, info, 'datra')
+      // console.log(res, info, 'datra')
       dispatch(
         changePlayLyricsAction([
           { time: 0, content: info?.message, play: false }
@@ -76,8 +83,30 @@ export default memo(function WYAppPlayerBar() {
       )
     })
     // console.log(audioRef.current,"aaaaaaaaaa")
-    // 首次进来 播放当前音乐
+
+    // 首次 进来 切换歌曲 播放当前音乐
     getPlayUrl(currentSong.id).then((res) => {
+      console.log(res, 'yij')
+      // 获取歌曲链接 失败 赋值空 暂停播放
+      if (res === undefined || res === null) {
+        audioRef.current.src = null
+        audioRef.current.pause()
+        dispatch(changePlayingAction(false))
+        let BugText = `api有问题等一会儿播放或者再刷新(${res})`
+        if (res === null) {
+          BugText = `播放歌曲url为空(${res})`
+        }
+        dispatch(
+          changePlayLyricsAction([
+            {
+              time: 0,
+              content: BugText,
+              play: false
+            }
+          ])
+        )
+        return
+      }
       audioRef.current.src = res
       audioRef.current
         .play()
@@ -108,6 +137,10 @@ export default memo(function WYAppPlayerBar() {
   // 点击播放歌曲
   const playMusic = useCallback(() => {
     onplaying ? audioRef.current.pause() : audioRef.current.play()
+    console.log(audioRef.current.src)
+    if (audioRef.current.src === null) {
+      console.log('audioRef.current.res')
+    }
     dispatch(changePlayingAction(!onplaying))
   }, [dispatch, onplaying])
   // 关键 监听onplaying的状态如果是暂停的状态 就让他播放
@@ -206,9 +239,12 @@ export default memo(function WYAppPlayerBar() {
     }
   }
   // 切换歌曲
-  const playNext = (tag) => {
-    dispatch(changePlayNextSongAndSequenceAction(tag))
-  }
+  const playNext = useCallback(
+    (tag) => {
+      dispatch(changePlayNextSongAndSequenceAction(tag))
+    },
+    [dispatch]
+  )
   // 改变循环
   const changeCycle = () => {
     console.log(sequence)
@@ -248,37 +284,55 @@ export default memo(function WYAppPlayerBar() {
     dispatch(getMaskCoverAction(false))
     console.log('flaseeeee')
   }
+
   const changeMaskCover = () => {
+    console.log('first')
+
     dispatch(getMaskCoverAction(!maskCover))
   }
-  // 遮罩层
+  // 移动端 点击进入歌曲详情页面
+  const MusicMessage = (event) => {
+    console.log('dainji')
+    event.stopPropagation()
+  }
   return (
-    <AppPlayerBarWrapper className="sprite_player" maskCover={maskCover}>
+    <AppPlayerBarWrapper
+      className="sprite_player"
+      maskCover={maskCover}
+      isPlaying={onplaying}
+    >
       <div className="wrap wrap-v2">
         {/* 播放歌曲的展示列表 */}
         <WYPlayDetail />
-        <PlayerBarLeft isPlaying={onplaying}>
+
+        <PlayBtn
+          playNext={playNext}
+          playMusic={playMusic}
+          onplaying={onplaying}
+        />
+        {/* 移动端播放按钮 */}
+        <div className="yi-dong">
+          <Space size={30}>
+            <Progress
+              showInfo={false}
+              type="circle"
+              percent={progress}
+              size={35}
+              strokeColor={{ '100%': '#fff' }}
+              trailColor="#464650"
+            />
+          </Space>
           <div
-            className="rwa prev sprite_player"
-            title="上一首(ctrl+<)"
-            onClick={(e) => playNext(-1)}
-          ></div>
-          <div
-            className="play sprite_player"
+            className="yi-play sprite_player"
             title="播放/暂停(p)"
             onClick={(e) => playMusic()}
-          >
-            {' '}
+          ></div>
+          <div className="yi-play-caid" onClick={(e) => changeMaskCover()}>
+            <MenuUnfoldOutlined />
           </div>
-          <div
-            className="rwa next sprite_player"
-            title="下一首(ctrl+>)"
-            onClick={(e) => playNext(1)}
-          >
-            {' '}
-          </div>
-        </PlayerBarLeft>
-        <PlayerBarCenter>
+        </div>
+        {/* 图片 */}
+        <PlayerBarCenter onClick={(e) => MusicMessage()}>
           <div className="image">
             <img src={getSizeImage(picUrl, 35)} alt=""></img>
             {currentSong.id && (
@@ -288,6 +342,7 @@ export default memo(function WYAppPlayerBar() {
               ></NavLink>
             )}
           </div>
+
           <div className="content">
             <div className="content-top">
               <NavLink
@@ -325,6 +380,7 @@ export default memo(function WYAppPlayerBar() {
                 )}
               </div>
             </div>
+            {/* 进度条 */}
             <div className="content-footer">
               <Slider
                 min={0}
@@ -343,6 +399,19 @@ export default memo(function WYAppPlayerBar() {
             </div>
           </div>
         </PlayerBarCenter>
+        {/* 移动端 */}
+        <div className="yid-music-cover">
+          <AppYidMusicCover
+            progress={progress}
+            changeAfter={changeAfter}
+            upChanfe={upChanfe}
+            playNext={playNext}
+            playMusic={playMusic}
+            onplaying={onplaying}
+            showCurrentTime={showCurrentTime}
+            songTime={songTime}
+          />
+        </div>
         <PlayerBarRight sequence={sequence} isPlayLength={isPlayLength}>
           <div className="left">
             <div className="pip btn" title="画中画歌词"></div>

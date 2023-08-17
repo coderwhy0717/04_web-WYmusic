@@ -1,6 +1,21 @@
 import styled from 'styled-components'
 
 export const PlayDetailWrapper = styled.div`
+  @media screen and (max-width: 760px) {
+    position: fixed;
+    top: auto;
+    left: -10px;
+    bottom: 47px;
+
+    width: 100vw;
+    height: 301px;
+    margin-left: 10px;
+
+    .maskCoverConent {
+      width: 100vw;
+    }
+  }
+
   display: ${(props) => {
     return props.maskCover ? 'block' : 'none'
   }};
@@ -127,6 +142,14 @@ export const PlayDetailWrapper = styled.div`
         height: 260px;
         background-color: rgba(0, 0, 0, 0.6);
         /*  */
+        &::-webkit-scrollbar {
+          width: 6px;
+          background-color: #000;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: rgba(165, 165, 165, 0.5);
+          border-radius: 10px;
+        }
         .actives {
           color: #fff;
           background: rgba(0, 0, 0, 0.6);
@@ -141,6 +164,7 @@ export const PlayDetailWrapper = styled.div`
           align-items: center;
           width: 100%;
           height: 28px;
+
           &:hover,
           &.user-name {
             color: #fff;
@@ -194,7 +218,17 @@ export const PlayDetailWrapper = styled.div`
         font-size: 12px;
         padding: 20px 0;
         overflow: auto;
+        transition: all 1s ease;
+        &::-webkit-scrollbar {
+          width: 6px;
+          background-color: #000;
+        }
+        &::-webkit-scrollbar-thumb {
+          background: rgba(165, 165, 165, 0.5);
+          border-radius: 10px;
+        }
         .lyitem {
+          transition: all 500ms ease;
           padding: 5px 40px 0;
           line-height: 2.5em;
           min-height: 40px;

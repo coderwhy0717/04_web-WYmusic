@@ -11,11 +11,15 @@ const Login = memo((props) => {
   const dispatch = useDispatch()
   // 暂时 使用这个达到 路由拦截
   const history = useHistory()
-  dispatch(chechCookieAction()).then((res) => {
-    if (res === undefined) {
-      history.go(-1)
-    }
-  })
+  useEffect(() => {
+    // dispatch(chechCookieAction()).then((res) => {
+    //   console.log(res)
+    //   if (res === 200) {
+    //     history.go(-1)
+    //   }
+    // })
+  }, [dispatch, history])
+
   //
   const { LoginShowWindow } = useSelector(
     (state) => ({

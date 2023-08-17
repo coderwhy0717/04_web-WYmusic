@@ -12,6 +12,7 @@ export default memo(function WYPageDiscover(props) {
 
   return (
     <DiscoverWrapper>
+      {/* hader 红色背景 */}
       <div className="tup">
         <TopMenu className="wrap-v1">
           {discoverNum.map((item, index) => {
@@ -23,6 +24,7 @@ export default memo(function WYPageDiscover(props) {
           })}
         </TopMenu>
       </div>
+
       <Suspense fallback={<div>page loading</div>}>
         {renderRoutes(route.routes)}
       </Suspense>

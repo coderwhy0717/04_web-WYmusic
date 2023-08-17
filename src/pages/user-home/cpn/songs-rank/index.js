@@ -91,9 +91,11 @@ const SongsRank = memo((props) => {
               {objectChange(data) ? (
                 <div className="songs">
                   {data.map((item, index) => {
+                    // console.log(item, 'item id')
+
                     return (
                       <ItemSongCover
-                        key={index}
+                        key={item.song.id}
                         index={index + 1}
                         item={item}
                       />

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+    />
+    <title>Document</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        background-color: #000;
+        padding: 0 35px;
+      }
+      img {
+        margin-left: 10px;
+        width: calc(100% / 3);
+        height: 340px;
+        object-fit: cover;
+      }
+      .wrapper {
+        max-width: 1200px;
+        position: relative;
+      }
+      .wrapper .carousel {
+        white-space: nowrap;
+        font-size: 0px;
+        cursor: pointer;
+        overflow: hidden;
+        scroll-behavior: smooth;
+      }
+      .wrapper .carousel img:first-child {
+        margin-left: 0px;
+      }
+      .carousel.dragging {
+        scroll-behavior: auto;
+        cursor: grab;
+      }
+      .carousel.dragging img {
+        pointer-events: none;
+      }
+      .wrapper i {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 46px;
+        width: 46px;
+        text-align: center;
+        line-height: 46px;
+        cursor: pointer;
+        border-radius: 50%;
+        font-size: 1.2rem;
+        background-color: #fff;
+      }
+      .wrapper i:first-child {
+        left: -23px;
+        display: none;
+      }
+      .wrapper i:last-child {
+        right: -23px;
+      }
+      @media screen and (max-width: 900px) {
+        .carousel img {
+          width: calc(100% / 2);
+        }
+      }
+      @media screen and (max-width: 550px) {
+        .carousel img {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <i id="left" class="fa-solid fa-angle-left"></i>
+      <div class="carousel">
+        <img
+          src="https://pics6.baidu.com/feed/b7fd5266d0160924cbe5a630c4a608fde7cd3404.jpeg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://lmg.jj20.com/up/allimg/811/013015115633/150130115633-13-1200.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://img1.baidu.com/it/u=3651966868,3530163192&fm=253&fmt=auto&app=138&f=JPEG"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://img.zcool.cn/community/018dbb5c769407a801213f26cf080b.jpg@3000w_1l_2o_100sh.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://img.zcool.cn/community/018dbb5c769407a801213f26cf080b.jpg@3000w_1l_2o_100sh.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://img0.baidu.com/it/u=3299375624,640545767&fm=253&fmt=auto&app=138&f=JPEG"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://img.zcool.cn/community/018dbb5c769407a801213f26cf080b.jpg@3000w_1l_2o_100sh.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://netdisk.moyublog.com/free_wallpapers_files/bazr2n55k3t.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://img.china.alibaba.com/img/ibank/2015/740/803/2379308047_603932725.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://netdisk.moyublog.com/free_wallpapers_files/yljehh212re.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://img.zcool.cn/community/018dbb5c769407a801213f26cf080b.jpg@3000w_1l_2o_100sh.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://lmg.jj20.com/up/allimg/811/013015115633/150130115633-9-1200.jpg"
+          alt="img"
+          draggable="false"
+        />
+        <img
+          src="https://lmg.jj20.com/up/allimg/811/013015115633/150130115633-10-1200.jpg"
+          alt="img"
+          draggable="false"
+        />
+      </div>
+      <i id="right" class="fa-solid fa-angle-right"></i>
+    </div>
+  </body>
+</html>
+<script>
+  let carousel = document.querySelector('.carousel')
+  let Oicon = document.querySelectorAll('.wrapper i')
+  firstImg = carousel.querySelectorAll('img')[0]
+  let isDrageStart = false,
+    isDragging = false,
+    prevPageX,
+    prevScrollLeft,
+    positionDiff
+  const dragStart = (e) => {
+    isDrageStart = true
+    prevPageX = e.pageX || e.touches[0].pageX
+    prevScrollLeft = carousel.scrollLeft
+  }
+  const dragging = (e) => {
+    if (!isDrageStart) return
+    e.preventDefault()
+    isDragging = true
+    carousel.classList.add('dragging')
+    positionDiff = (e.pageX || e.touches[0].pageX) - prevPageX
+    carousel.scrollLeft = prevScrollLeft - positionDiff
+    showIcon()
+  }
+  const dragStop = () => {
+    isDrageStart = false
+    carousel.classList.remove('dragging')
+    if (!isDragging) return
+    isDragging = false
+    autoSlide()
+  }
+
+  Oicon.forEach((element) => {
+    element.addEventListener('click', () => {
+      let firstImageWidth = firstImg.clientWidth + 10 //加10因为图片的margin-left为10
+      carousel.scrollLeft +=
+        element.id == 'left' ? -firstImageWidth : firstImageWidth
+      setTimeout(() => showIcon(), 60)
+    })
+  })
+  // 左右箭头的icon显示隐藏
+  const showIcon = () => {
+    let scrollWidth = carousel.scrollWidth - carousel.clientWidth
+    Oicon[0].style.display = carousel.scrollLeft == 0 ? 'none' : 'block'
+    Oicon[1].style.display =
+      carousel.scrollLeft == scrollWidth ? 'none' : 'block'
+  }
+
+  const autoSlide = () => {
+    if (carousel.scrollLeft == carousel.scrollWidth - carousel.clientWidth)
+      return
+    positionDiff = Math.abs(positionDiff)
+    let firstImgWidth = firstImg.clientWidth + 10
+    let valDifference = firstImgWidth - positionDiff
+    if (carousel.scrollLeft > prevScrollLeft) {
+      return (carousel.scrollLeft +=
+        positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff)
+    }
+    carousel.scrollLeft -=
+      positionDiff > firstImgWidth / 3 ? valDifference : -positionDiff
+  }
+  carousel.addEventListener('mousemove', dragging) //当鼠标指针在指定的元素中移动时，就会发生 mousemove 事件。
+  carousel.addEventListener('touchmove', dragging) //当用户在屏幕上移动手指时会发生 touchmove 事件
+
+  carousel.addEventListener('mousedown', dragStart) //当鼠标指针移动到元素上方，并按下鼠标左键时，会发生 mousedown 事件
+  carousel.addEventListener('touchstart', dragStart) //当手指触摸屏幕时候触发，即使已经有一个手指放在屏幕上也会触发
+
+  carousel.addEventListener('mouseup', dragStop) //当鼠标指针移动到元素上方，并松开鼠标左键时，会发生 mouseup 事件
+  carousel.addEventListener('mouseleave', dragStop) //当鼠标指针离开被选元素时，会发生 mouseleave 事件
+  carousel.addEventListener('touchend', dragStop) //当手指从屏幕上离开的时候触发
+</script>

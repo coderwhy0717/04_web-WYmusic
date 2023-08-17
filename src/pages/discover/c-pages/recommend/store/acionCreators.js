@@ -46,7 +46,7 @@ const changeArtistListAction = (res) => ({
 export function getTopBannersAction() {
   return (dispatch) => {
     getTopBanners().then((res) => {
-      console.log(res)
+      // console.log(res)
       if (res.code === 'ERR_NETWORK') {
         dispatch(changeShowErrorAction('ERR_NETWORK'))
         return
@@ -80,8 +80,8 @@ export function getNewAlbumAction(limit) {
         dispatch(changeNewAlbumAction(res.albums))
         return
       }
-      const monthData = res.monthData && res.monthData.slice(0, 10)
-      if (monthData[0]) {
+      const monthData = res?.monthData && res?.monthData.slice(0, 10)
+      if (monthData?.length >= 1 && monthData[0]) {
         dispatch(changeNewAlbumAction(monthData))
         return
       }
@@ -125,7 +125,7 @@ export function getRankingMusicAction() {
       console.log(songrankinglist)
       songrankinglist.forEach((item) => {
         getSongListDetail(item.id).then((res) => {
-          console.log(res)
+          // console.log(res)
           const id = res.playlist && res.playlist.id
           for (let i = 0; i < songrankinglist.length; i++) {
             switch (id) {
@@ -148,7 +148,7 @@ export function getRankingMusicAction() {
 export function getSingerListAction(limit, offset) {
   return (dispatch) => {
     getSingerList(limit, offset).then((res) => {
-      console.log(res, 'res')
+      // console.log(res, 'res')
 
       dispatch(changeArtistListAction(res))
     })

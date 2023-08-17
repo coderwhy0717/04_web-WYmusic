@@ -11,7 +11,7 @@ export const ErrorCoverWrapper = styled.div`
   }};
   width: 100%;
   flex: 1;
-
+  padding-top: 50px;
   height: 100vh;
   background-color: #f9f9f9;
   border: 1px solid #ccc;

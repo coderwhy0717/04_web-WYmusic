@@ -6,7 +6,7 @@ export const MvCoverWrapper = styled.div`
     position: relative;
     width: 137px;
     height: 103px;
-    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0.5px 0.1px rgba(0, 0, 0, 0.2);
     .cover {
       position: absolute;
       left: 0;

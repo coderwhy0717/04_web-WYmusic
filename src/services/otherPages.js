@@ -54,11 +54,12 @@ export function getRelatedPlayList(id) {
   })
 }
 // 获取用户信息
-export function getUserInfo(uid) {
+export function getUserInfo(uid, timestamp = new Date().getTime()) {
   return request({
     url: '/user/detail',
     params: {
-      uid
+      uid,
+      timestamp
     }
   })
 }
@@ -137,6 +138,30 @@ export function getUSerPlaylist(uid) {
     url: '/user/playlist',
     params: {
       uid
+    }
+  })
+}
+
+// user/home 页面的 点击动态 关注 粉丝  /user/event?uid=122969642
+
+export function getUserEventList(uid, limit = 30, lasttime) {
+  return request({
+    url: '/user/event',
+    params: {
+      uid,
+      limit,
+      lasttime
+    }
+  })
+}
+
+export function getConcern(uid, limit = 30, offset = 0) {
+  return request({
+    url: '/user/follows',
+    params: {
+      uid,
+      limit,
+      offset
     }
   })
 }

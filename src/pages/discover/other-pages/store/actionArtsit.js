@@ -36,7 +36,7 @@ export function getArtistDetailAction(id) {
     dispatch(changeShowErrorAction(false))
 
     getArtistDetail(id).then((res) => {
-      console.log(res, 'res')
+      // console.log(res, 'res')
       dispatch(changeArtist(res))
       dispatch(changeShowErrorAction(true))
     })

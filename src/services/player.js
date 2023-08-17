@@ -20,7 +20,7 @@ export function getPlaySongDetail(ids) {
 }
 // 音乐是否可用
 export function ifCheckMusic(id) {
-  console.log(id, 'fn id')
+  // console.log(id, 'fn id')
 
   return request({
     url: '/check/music',
