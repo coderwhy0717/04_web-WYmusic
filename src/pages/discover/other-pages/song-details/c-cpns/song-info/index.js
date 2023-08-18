@@ -28,9 +28,10 @@ export default memo(function WYSongInfo(props) {
       setTitle('展示')
     }
   }, [])
+  // 控制歌曲页面展示多少歌词
   const a = () => {
     return pagesLyrics
-      .slice(0, 13)
+      .slice(0, 10)
       .map((item, index) => <div key={index}>{item.content}</div>)
   }
 
@@ -113,7 +114,7 @@ export default memo(function WYSongInfo(props) {
                 className="panel"
                 showArrow={false}
                 header={
-                  pagesLyrics.length > 13 ? (
+                  pagesLyrics.length > 10 ? (
                     <div>
                       {title}
                       <i className="tebel sprite_icon2"></i>
@@ -124,7 +125,7 @@ export default memo(function WYSongInfo(props) {
                 }
                 key="1"
               >
-                {pagesLyrics.slice(13).map((item, index) => {
+                {pagesLyrics.slice(10).map((item, index) => {
                   return <div key={index}>{item.content}</div>
                 })}
               </Panel>

@@ -16,20 +16,23 @@ import {
   CloudDownloadOutlined,
   AudioOutlined,
   MessageOutlined,
-  MoreOutlined,
-  PlayCircleFilled
+  MoreOutlined
 } from '@ant-design/icons'
-import { objectChange } from '../../../../../utils/format-utils'
-import PlayBtn from '../play-btn'
+
+import { getPlayUrl, objectChange } from '../../../../../utils/format-utils'
+import PlayMusicBtn from './cpn/play-music-btn'
+import { formatMinuteSecond } from '../../../../../utils/format-utils'
 const AppYidMusicCover = memo((props) => {
   const {
     progress = 0,
-    showCurrentTime = 0,
-    songTime = 0,
+    showCurrentTime = '00:00',
+    songTime = '00:00',
+    sequence = 0,
     upChanfe,
     changeAfter,
     playNext,
-    playMusic
+    playMusic,
+    changeCycle
   } = props
   const dispatch = useDispatch()
 
@@ -77,9 +80,52 @@ const AppYidMusicCover = memo((props) => {
   const alialength =
     objectChange(currentSong?.alia) && currentSong?.alia[0].length
   const length = objectChange(currentSong) && currentSong?.name.length
+  useEffect(() => {
+    const titme = currentSong.mark
+
+    console.log((titme / currentSong.dt) * 1000, '1321')
+    // formatMinuteSecond
+
+    console.log(formatMinuteSecond(currentSong.mark), '8333333333333333')
+  }, [currentSong])
+  const [like, setLike] = useState(false)
+  const changeLike = () => {
+    setLike(!like)
+  }
+  const DownloadRef = useRef()
+
+  // 下载 到本地
+  const Download = async () => {
+    // getPlayUrl
+
+    const url = await getPlayUrl(currentSong.id)
+
+    const filename = `${currentSong.name}.mp3`
+    const link = document.createElement('a')
+    link.href = url
+    link.download = filename
+    link.click()
+
+    // DownloadRef.download = getPlayUrl(currentSong.id)
+  }
+  // useEffect(() => {
+  //   //定义一个函数判断是手机端还是pc端
+  //   function isMobile() {
+  //     if (
+  //       window.navigator.userAgent.match(
+  //         /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+  //       )
+  //     ) {
+  //       return true // 移动端
+  //     } else {
+  //       return false // PC端
+  //     }
+  //   }
+
+  // })
 
   return (
-    <AppYidMusicCoverWrapper open={open} anim={onplaying}>
+    <AppYidMusicCoverWrapper open={open} anim={onplaying} sequence={sequence}>
       {/* 手机端 播放器 */}
       <Carousel
         afterChange={onChange}
@@ -186,8 +232,14 @@ const AppYidMusicCover = memo((props) => {
         <div className="yid-open-footer">
           {/* 按钮 */}
           <div className="yid-open-btns">
-            <HeartFilled style={{ color: 'red' }} />
-            <CloudDownloadOutlined />
+            <HeartFilled
+              onClick={(e) => changeLike()}
+              style={{ color: like ? 'red' : '' }}
+            />
+            <CloudDownloadOutlined
+              ref={DownloadRef}
+              onClick={(e) => Download()}
+            />
             <AudioOutlined />
             <MessageOutlined />
             <MoreOutlined />
@@ -208,12 +260,15 @@ const AppYidMusicCover = memo((props) => {
             <i>{songTime}</i>
           </div>
           {/* 手机端 播放按钮 */}
-          <PlayBtn
-            playNext={playNext}
-            playMusic={playMusic}
-            onplaying={onplaying}
-            open={open}
-          />
+          <div className="yid-open-btn-box">
+            <PlayMusicBtn
+              sequence={sequence}
+              onplaying={onplaying}
+              playNext={playNext}
+              playMusic={playMusic}
+              changeCycle={changeCycle}
+            />
+          </div>
         </div>
         {/* 4. 高斯模糊 背景 手机端 */}
         <img
@@ -229,12 +284,14 @@ const AppYidMusicCover = memo((props) => {
 
 AppYidMusicCover.propTypes = {
   progress: PropTypes.number,
-  showCurrentTime: PropTypes.number,
-  songTime: PropTypes.number,
+  showCurrentTime: PropTypes.string,
+  songTime: PropTypes.string,
+  sequence: PropTypes.number,
   changeAfter: PropTypes.func,
   upChanfe: PropTypes.func,
   playNext: PropTypes.func,
-  playMusic: PropTypes.func
+  playMusic: PropTypes.func,
+  changeCycle: PropTypes.func
 }
 
 export default AppYidMusicCover

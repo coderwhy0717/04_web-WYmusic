@@ -14,9 +14,6 @@ export const PlayBtnWrapper = styled.div`
     .play {
       text-align: right;
     }
-    .toto {
-      color: red !important;
-    }
   }
 
   display: flex;

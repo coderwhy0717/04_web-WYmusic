@@ -219,6 +219,8 @@ export const PlayDetailWrapper = styled.div`
         padding: 20px 0;
         overflow: auto;
         transition: all 1s ease;
+        white-space: pre-line;
+
         &::-webkit-scrollbar {
           width: 6px;
           background-color: #000;

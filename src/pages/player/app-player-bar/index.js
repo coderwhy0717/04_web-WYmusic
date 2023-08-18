@@ -293,7 +293,6 @@ export default memo(function WYAppPlayerBar() {
   // 移动端 点击进入歌曲详情页面
   const MusicMessage = (event) => {
     console.log('dainji')
-    event.stopPropagation()
   }
   return (
     <AppPlayerBarWrapper
@@ -304,13 +303,13 @@ export default memo(function WYAppPlayerBar() {
       <div className="wrap wrap-v2">
         {/* 播放歌曲的展示列表 */}
         <WYPlayDetail />
-
+        {/* 播放按钮 */}
         <PlayBtn
           playNext={playNext}
           playMusic={playMusic}
           onplaying={onplaying}
         />
-        {/* 移动端播放按钮 */}
+        {/* 移动端播放按钮主页 */}
         <div className="yi-dong">
           <Space size={30}>
             <Progress
@@ -332,7 +331,7 @@ export default memo(function WYAppPlayerBar() {
           </div>
         </div>
         {/* 图片 */}
-        <PlayerBarCenter onClick={(e) => MusicMessage()}>
+        <PlayerBarCenter>
           <div className="image">
             <img src={getSizeImage(picUrl, 35)} alt=""></img>
             {currentSong.id && (
@@ -410,6 +409,8 @@ export default memo(function WYAppPlayerBar() {
             onplaying={onplaying}
             showCurrentTime={showCurrentTime}
             songTime={songTime}
+            changeCycle={changeCycle}
+            sequence={sequence}
           />
         </div>
         <PlayerBarRight sequence={sequence} isPlayLength={isPlayLength}>

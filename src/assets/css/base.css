@@ -207,6 +207,7 @@ img {
   right: 0;
   bottom: 50px;
   z-index: 99999;
+  white-space: pre-line;
 }
 /* antd 版本 5X */
 .ant-message  {

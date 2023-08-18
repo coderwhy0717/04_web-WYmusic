@@ -99,7 +99,7 @@ export const SongInfoWrapper = styled.div`
       padding-bottom: 20px;
       margin: 40px 0 90px;
       position: relative;
-
+      white-space: pre-line;
       .top-panel .ant-collapse-header {
         cursor: text;
         color: #333;

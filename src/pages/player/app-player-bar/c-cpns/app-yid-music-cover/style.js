@@ -126,6 +126,27 @@ export const AppYidMusicCoverWrapper = styled.div`
         bottom: 20px;
         left: 0;
         right: 0;
+        .abcs {
+          font-size: 60px;
+          color: red;
+        }
+        .yid-open-btn-box {
+          display: flex;
+          align-items: center;
+        }
+        .cycle {
+          background-position: ${(props) => {
+            switch (props.sequence) {
+              case 1:
+                return '-66px -248px;'
+              case 2:
+                return '-66px -344px'
+              default:
+                return '-3px -344px'
+            }
+          }};
+        }
+
         .yid-open-btns {
           display: flex;
           align-items: center;

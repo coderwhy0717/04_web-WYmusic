@@ -17,6 +17,7 @@ dayjs.extend(calendar)
 dayjs.extend(relativeTime)
 require('dayjs/locale/zh-cn')
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
 root.render(<App />)
 
 // const data = [

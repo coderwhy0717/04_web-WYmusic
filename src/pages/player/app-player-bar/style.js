@@ -184,7 +184,7 @@ export const PlayerBarCenter = styled.div`
       display: flex;
       align-items: center;
       color: #797979;
-      margin-top: -9px;
+      margin-top: -6px;
       .ant-slider {
         width: 480px;
         margin-right: 10px;
@@ -202,7 +202,7 @@ export const PlayerBarCenter = styled.div`
           width: 22px;
           height: 24px;
           border: none;
-          margin-top: -7px;
+          margin-top: -4px;
           background: url(${require('@/assets/img/sprite_icon.png')}) 0 -250px;
         }
         .ant-slider-handle::before {

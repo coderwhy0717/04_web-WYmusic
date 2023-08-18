@@ -13,7 +13,20 @@ export default memo(function WYPlayDetail() {
   const [iscurrentplay, setIscurrentplay] = useState(0)
   const [isImage, setImage] = useState('')
   const lyConentRef = useRef()
+  useEffect(() => {
+    if (lyConentRef.current) {
+      const ob = new ResizeObserver((en) => {
+        for (const entry of en) {
+          console.log(entry, 'en')
+          console.log(entry.borderBoxSize[0].inlineSize, '宽')
+          console.log(entry.borderBoxSize[0].blockSize, '高')
+        }
+      })
+      console.dir(lyConentRef.current, '组件')
 
+      ob.observe(lyConentRef.current)
+    }
+  }, [lyConentRef])
   // maskCover 显示播放列表隐藏
   const { maskCover, playList, currentSong, playLyrics, lyricsIndex } =
     useSelector(
@@ -124,7 +137,7 @@ export default memo(function WYPlayDetail() {
                     lyricsIndex === index ? 'lyactive' : ''
                   }`}
                 >
-                  {item.content}
+                  {item.content}a
                 </div>
               )
             })}
